@@ -1,29 +1,16 @@
-# 该插件会在后续进一步迭代 此次版本发布只会测试
+<div align="center">
+</div>
 
-# 文档会在后续持续优化
+# customer-search-form-table(Rslib project)
 
-# ～～～～
+## Technology Stack
 
-# Rslib project
+1. React: v19.x.x [React](https://reactjs.org/)
+2. Antd: v5.x.x [Ant Design](https://ant.design/index-cn)
+3. TypeScript: v5.x.x[TypeScript](https://www.typescriptlang.org/)
+4. Rsbuild: v1.x.x[TypeScript](https://rsbuild.rs/)
+5. Rslib: v0.x.x[TypeScript](https://rslib.rs/)
 
-## Setup
+## 约定式提交
 
-Install the dependencies:
-
-```bash
-pnpm install
-```
-
-## Get started
-
-Build the library:
-
-```bash
-pnpm build
-```
-
-Build the library in watch mode:
-
-```bash
-pnpm dev
-```
+[Conventional Commits](https://www.conventionalcommits.org/zh-hans/v1.0.0/)

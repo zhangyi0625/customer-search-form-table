@@ -30,6 +30,6 @@ jobs:
 
       - name: Run semantic-release
         env:
-          GITHUB_TOKEN: ${{ secrets.zy-zy0625token }}
-          NPM_TOKEN: ${{ secrets.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 }}
+          GITHUB_TOKEN: zy-zy0625token
+          NPM_TOKEN: secrets.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
         run: npx semantic-release

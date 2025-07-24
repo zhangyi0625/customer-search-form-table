@@ -1,4 +1,3 @@
-import React from 'react';
 import { Button, SearchForm } from '../src/index';
 
 const App = () => {

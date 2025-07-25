@@ -3,8 +3,8 @@ on:
   push:
     branches:
       - master
-    # tags:
-    #   - 'v1.0.0'
+    tags:
+      - 'v1.0.0-beta.01'
 permissions:
   contents: write
 jobs:

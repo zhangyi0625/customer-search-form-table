@@ -32,7 +32,7 @@ const SearchFormItem: React.FC<CustomColumn> = memo((props) => {
     label,
     name,
     formType,
-    api,
+    // api,
     // tag,
     options,
     isRules,
@@ -145,11 +145,10 @@ const SearchFormItem: React.FC<CustomColumn> = memo((props) => {
             options={selectOptions()}
           />
         )} */}
-        {/* 普通查询select */}
         {formType === 'normalSelect' && (
           <Select
             allowClear
-            placeholder={`请输入${label}`}
+            placeholder={`请选择${label}`}
             showSearch
             options={options}
             filterOption={(input, option) =>

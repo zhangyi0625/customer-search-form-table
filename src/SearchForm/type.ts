@@ -41,6 +41,8 @@ export type SearchFormPorps = {
   searchBtnText?: string | '重置';
   /** 重置自定义文字 默认重置 */
   resetBtnText?: string | '重置';
+  /** 显示按钮icon */
+  iconHidden: boolean;
   /** 搜索、重置点击回调 */
   onUpdateSearch: (filter?: unknown) => void;
 };

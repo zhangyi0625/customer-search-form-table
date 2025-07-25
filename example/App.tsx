@@ -17,6 +17,24 @@ const App = () => {
       span: 6,
     },
     {
+      label: '测试1',
+      name: 'test1',
+      formType: 'input',
+      span: 6,
+    },
+    {
+      label: '测试2',
+      name: 'test2',
+      formType: 'input',
+      span: 6,
+    },
+    {
+      label: '测试3',
+      name: 'test3',
+      formType: 'input',
+      span: 6,
+    },
+    {
       label: '是否启用',
       name: 'enabled',
       formType: 'normalSelect',
@@ -33,7 +51,7 @@ const App = () => {
       span: 6,
     },
     {
-      label: '起运港',
+      label: 'porCode',
       name: 'porCode',
       formType: 'normalSelect',
       options: [],
@@ -60,26 +78,26 @@ const App = () => {
       },
       span: 6,
     },
-    // {
-    //   label: '目的港',
-    //   name: 'fndCode',
-    //   formType: 'normalSelect',
-    //   options: [],
-    //   span: 6,
-    // },
-    // {
-    //   label: '细分航线',
-    //   name: 'router',
-    //   formType: 'normalSelect',
-    //   options: [],
-    //   selectFileldName: {
-    //     label: 'routeName',
-    //     value: 'id',
-    //   },
-    //   span: 6,
-    // },
     {
-      label: '放舱日期',
+      label: 'fndCode',
+      name: 'fndCode',
+      formType: 'normalSelect',
+      options: [],
+      span: 6,
+    },
+    {
+      label: 'area',
+      name: 'router',
+      formType: 'normalSelect',
+      options: [],
+      selectFileldName: {
+        label: 'routeName',
+        value: 'id',
+      },
+      span: 6,
+    },
+    {
+      label: 'date',
       name: 'create',
       formType: 'date-picker',
       span: 6,
@@ -98,9 +116,12 @@ const App = () => {
         columns={columns}
         gutterWidth={24}
         labelPosition="left"
+        showRow={2}
         btnSeparate={true}
         isShowReset={true}
-        isShowExpend={false}
+        isShowExpend={true}
+        iconHidden={true}
+        searchBtnText="查询"
         onUpdateSearch={onUpdateSearch}
       />
     </>

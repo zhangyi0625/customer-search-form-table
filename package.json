@@ -1,6 +1,6 @@
 {
   "name": "customer-search-form-table",
-  "version": "1.0.1",
+  "version": "1.0.0",
   "type": "module",
   "exports": {
     ".": {
@@ -12,10 +12,6 @@
   "files": [
     "dist"
   ],
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/zhangyi0625/customer-search-form-table.git"
-  },
   "scripts": {
     "build": "rslib build",
     "dev": "rsbuild dev --open",

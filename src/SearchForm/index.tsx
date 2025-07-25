@@ -29,6 +29,9 @@ export const SearchForm: React.FC<SearchFormPorps> = memo((props) => {
     btnSeparate,
     isShowReset,
     isShowExpend,
+    searchBtnText,
+    resetBtnText,
+    iconHidden,
     onUpdateSearch,
   } = props;
 
@@ -86,10 +89,10 @@ export const SearchForm: React.FC<SearchFormPorps> = memo((props) => {
         params = {
           ...filterKeys(searchForm.getFieldsValue(), nameKey, false),
           ...params,
-          fndCode:
-            (isArray(searchForm.getFieldValue('fndCode'))
-              ? searchForm.getFieldValue('fndCode')[1]
-              : searchForm.getFieldValue('fndCode')) ?? '',
+          // fndCode:
+          //   (isArray(searchForm.getFieldValue('fndCode'))
+          //     ? searchForm.getFieldValue('fndCode')[1]
+          //     : searchForm.getFieldValue('fndCode')) ?? '',
           [`${item}Start`]: formatTime(
             searchForm.getFieldsValue()[item][0],
             'Y-M-D h:m:s',
@@ -141,18 +144,24 @@ export const SearchForm: React.FC<SearchFormPorps> = memo((props) => {
                 <Button
                   type="primary"
                   htmlType="submit"
-                  icon={<SearchOutlined />}
+                  icon={iconHidden && <SearchOutlined />}
                 >
-                  搜索
+                  {searchBtnText ?? '搜索'}
                 </Button>
                 {isShowReset && (
                   <Button
                     type="default"
-                    icon={<RedoOutlined />}
+                    icon={iconHidden && <RedoOutlined />}
                     onClick={onReset}
                   >
-                    重置
+                    {resetBtnText ?? '重置'}
                   </Button>
+                )}
+                {isShowExpend && (
+                  <a style={{ fontSize: '12px' }} onClick={changeExpend}>
+                    <DownOutlined rotate={isExpend ? 180 : 0} />
+                    Collapse
+                  </a>
                 )}
               </Space>
             </Col>
@@ -166,13 +175,17 @@ export const SearchForm: React.FC<SearchFormPorps> = memo((props) => {
               type="primary"
               htmlType="submit"
               onClick={onSearch}
-              icon={<SearchOutlined />}
+              icon={iconHidden && <SearchOutlined />}
             >
-              搜索
+              {searchBtnText ?? '搜索'}
             </Button>
             {isShowReset && (
-              <Button type="default" icon={<RedoOutlined />} onClick={onReset}>
-                重置
+              <Button
+                type="default"
+                icon={iconHidden && <RedoOutlined />}
+                onClick={onReset}
+              >
+                {resetBtnText ?? '重置'}
               </Button>
             )}
             {isShowExpend && (

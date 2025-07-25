@@ -7,6 +7,8 @@
 
 # customer-search-form-table(Rslib project)
 
+![alt text](./src/assets/example.png)
+
 ## Technology Stack
 
 1. React: v19.x.x [React](https://reactjs.org/)
@@ -62,6 +64,10 @@
 6. [git commit toolchain](https://juejin.cn/post/7067166468797890591)
 7. [https://theodorusclarence.com/library/conventional-commit-readme](https://theodorusclarence.com/library/conventional-commit-readme)
 
+## API
+
+[API](./src/SearchForm/docs/api.md) | [中文API](./src//SearchForm//docs/api_ZH.md)
+
 ## Development
 
 ```bash
@@ -74,7 +80,7 @@
 
 # Future plan update
 
-- The options of select in SearchForm supports remote search or returning data through an interface（需要开启filterSearch）
+- The options of select in SearchForm supports remote search or returning data through an interface（Needs to be turned on filterSearch）
 - Add more components from the form to SearchFormItem
 - Develop SearchTable to be linked with SearchForm, and tableData is returned through a custom getch interface
 - Currently, only antd (v5.x.x) is supported. Subsequently, Material-UI, Element for React, React Bootstrap, Blueprint UI, Semantic UI React, etc. will be added...

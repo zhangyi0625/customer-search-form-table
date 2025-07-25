@@ -7,6 +7,8 @@
 
 # customer-search-form-table(Rslib project)
 
+![alt text](./src/assets/example.png)
+
 ## Technology Stack
 
 1. React: v19.x.x [React](https://reactjs.org/)
@@ -61,6 +63,10 @@
 5. [https://gitmoji.dev/](https://gitmoji.dev/)
 6. [git commit 工具链](https://juejin.cn/post/7067166468797890591)
 7. [https://theodorusclarence.com/library/conventional-commit-readme](https://theodorusclarence.com/library/conventional-commit-readme)
+
+## API
+
+[API](./src/SearchForm/docs/api.md) | [中文API](./src//SearchForm//docs/api_ZH.md)
 
 ## Development
 

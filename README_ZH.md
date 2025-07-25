@@ -61,3 +61,22 @@
 5. [https://gitmoji.dev/](https://gitmoji.dev/)
 6. [git commit 工具链](https://juejin.cn/post/7067166468797890591)
 7. [https://theodorusclarence.com/library/conventional-commit-readme](https://theodorusclarence.com/library/conventional-commit-readme)
+
+## Development
+
+```bash
+  1. git clone https://github.com/zhangyi0625/customer-search-form-table.git
+  2. cd customer-search-form-table
+  3. 可以选择以下两种方式的任一方式启动项目, 其他 cli 参考 package.json 中的 scripts
+    - $ npm run dev
+    - $ npm run build
+```
+
+# 未来计划更新
+
+:::note
+1、SearchForm中select的options支持远程搜索或者通过接口返回data（需要开启filterSearch）
+2、将更多form中的组件加入SearchFormItem
+3、开发SearchTable联动SearchForm，tableData通过自定义getch接口返回
+4、现有只支持antd（v5.x.x）,后续将加入Material-UI、Element for React、React Bootstrap、Blueprint UI、Semantic UI React等...
+:::

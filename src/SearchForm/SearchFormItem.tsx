@@ -9,23 +9,23 @@ import {
   CascaderProps,
 } from 'antd';
 import { SelectProps } from 'antd/lib';
-import { CustomColumn } from '.';
 import { debounce } from 'lodash-es';
+import type { CustomColumn } from './type';
 
-type fetchValueType = Pick<CustomColumn, 'name' | 'api' | 'tag'> & {
-  value: string | null;
-};
+// type fetchValueType = Pick<CustomColumn, 'name' | 'api' | 'tag'> & {
+//   value: string | null;
+// };
 
 type DefaultOptionType = GetProp<CascaderProps, 'options'>[number];
 
-const fetchSearch = debounce(
-  (value: fetchValueType, callback: (data: any) => void) => {
-    value.api({ keyword: value.value, tag: value.tag }).then((res: any) => {
-      callback(res);
-    });
-  },
-  300,
-);
+// const fetchSearch = debounce(
+//   (value: fetchValueType, callback: (data: any) => void) => {
+//     value.api({ keyword: value.value, tag: value.tag }).then((res: any) => {
+//       callback(res);
+//     });
+//   },
+//   300,
+// );
 
 const SearchFormItem: React.FC<CustomColumn> = memo((props) => {
   const {
@@ -33,7 +33,7 @@ const SearchFormItem: React.FC<CustomColumn> = memo((props) => {
     name,
     formType,
     api,
-    tag,
+    // tag,
     options,
     isRules,
     selectFileldName,
@@ -46,26 +46,26 @@ const SearchFormItem: React.FC<CustomColumn> = memo((props) => {
   const [defalueOptions, setDefaultOptions] =
     useState<SelectProps['options']>(options);
 
-  const handleSearch = (
-    newVal: string,
-    type: string,
-    API: any,
-    tag: string | undefined,
-  ) => {
-    fetchSearch(
-      { value: newVal, name: type, api: API, tag },
-      setDefaultOptions,
-    );
-  };
+  // const handleSearch = (
+  //   newVal: string,
+  //   type: string,
+  //   API: any,
+  //   tag: string | undefined,
+  // ) => {
+  //   fetchSearch(
+  //     { value: newVal, name: type, api: API, tag },
+  //     setDefaultOptions,
+  //   );
+  // };
 
-  const selectFoucs = (name: string, API: any, tag: string | undefined) => {
-    if (portNameOptions.includes(name)) {
-      fetchSearch(
-        { value: null, name: name, api: API, tag },
-        setDefaultOptions,
-      );
-    } else setDefaultOptions(options);
-  };
+  // const selectFoucs = (name: string, API: any, tag: string | undefined) => {
+  //   if (portNameOptions.includes(name)) {
+  //     fetchSearch(
+  //       { value: null, name: name, api: API, tag },
+  //       setDefaultOptions,
+  //     );
+  //   } else setDefaultOptions(options);
+  // };
 
   const selectOptions = () => {
     return (defalueOptions || []).map((item) =>
@@ -127,7 +127,7 @@ const SearchFormItem: React.FC<CustomColumn> = memo((props) => {
             placeholder={`请输入${label}`}
           />
         )}
-        {formType === 'select' && (
+        {/* {formType === 'select' && (
           <Select
             allowClear
             placeholder={`请输入${label}`}
@@ -144,9 +144,9 @@ const SearchFormItem: React.FC<CustomColumn> = memo((props) => {
             }}
             options={selectOptions()}
           />
-        )}
+        )} */}
         {/* 普通查询select */}
-        {/* {formType === 'normalSelect' && (
+        {formType === 'normalSelect' && (
           <Select
             allowClear
             placeholder={`请输入${label}`}
@@ -161,11 +161,10 @@ const SearchFormItem: React.FC<CustomColumn> = memo((props) => {
               selectFileldName ?? {
                 label: 'label',
                 value: 'value',
-                children: 'children',
               }
             }
           />
-        )} */}
+        )}
         {formType === 'cascader' && (
           <Cascader
             options={options}

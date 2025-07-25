@@ -1,44 +1,12 @@
 import style from './index.module.scss';
 import { memo, useEffect, useState } from 'react';
 import { Button, Col, Form, Row, Space } from 'antd';
-import { SelectProps } from 'antd';
-import SearchFormItem from './SearchFormItem';
 import { DownOutlined, RedoOutlined, SearchOutlined } from '@ant-design/icons';
+import SearchFormItem from './SearchFormItem';
+import type { CustomColumn, SearchFormPorps } from './type';
 import { filterKeys, replaceObjectName } from '../utils/tool';
 import { formatTime } from '../utils/format';
 import { isArray } from 'lodash-es';
-
-export interface CustomColumn {
-  label: string;
-  name: string;
-  api?: any;
-  formType: string;
-  options?: SelectProps['options'];
-  publicSettingKey?: string;
-  span: number;
-  tag?: string | undefined | 'POR' | 'FND';
-  filterSearch?: boolean;
-  // Todo : form表单rules 暂时只支持基础空置校验
-  isRules?: boolean;
-  defaultValue?: string | null;
-  hidden?: boolean;
-  selectFileldName?: {
-    label: string;
-    value: string;
-    children?: string;
-  };
-}
-
-type SearchFormPorps = {
-  gutterWidth: number;
-  showRow?: number;
-  columns: CustomColumn[];
-  btnSeparate: boolean;
-  labelPosition: 'left' | 'right';
-  isShowReset: boolean;
-  isShowExpend: boolean;
-  onUpdateSearch: (filter?: unknown) => void;
-};
 
 const formItemLayout = {
   labelCol: {
@@ -143,6 +111,8 @@ export const SearchForm: React.FC<SearchFormPorps> = memo((props) => {
     setIsExpend(!isExpend);
   };
 
+  console.log(style, 'style');
+
   return (
     <div className={style['search-form']}>
       <Form
@@ -164,18 +134,7 @@ export const SearchForm: React.FC<SearchFormPorps> = memo((props) => {
               }
               hidden={item.hidden}
             >
-              <SearchFormItem
-                label={item.label}
-                name={item.name}
-                api={item.api}
-                options={item.options}
-                formType={item.formType}
-                span={item.span}
-                tag={item.tag}
-                isRules={item.isRules ?? false}
-                publicSettingKey={item.publicSettingKey}
-                selectFileldName={item.selectFileldName}
-              />
+              <SearchFormItem {...item} />
             </Col>
           ))}
           {!btnSeparate && (

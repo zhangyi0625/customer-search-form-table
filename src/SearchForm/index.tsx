@@ -1,4 +1,5 @@
-import style from './index.module.scss';
+// import style from './index.module.scss';
+import './index.css';
 import { memo, useEffect, useState } from 'react';
 import { Button, Col, Form, Row, Space } from 'antd';
 import { DownOutlined, RedoOutlined, SearchOutlined } from '@ant-design/icons';
@@ -11,11 +12,11 @@ import { isArray } from 'lodash-es';
 const formItemLayout = {
   labelCol: {
     xs: { span: 24 },
-    sm: { span: 8 },
+    sm: { span: 6 },
   },
   wrapperCol: {
     xs: { span: 24 },
-    sm: { span: 16 },
+    sm: { span: 18 },
   },
 };
 
@@ -51,6 +52,7 @@ export const SearchForm: React.FC<SearchFormPorps> = memo((props) => {
       return result;
     };
     searchColumns.map(async (item: CustomColumn) => {
+      // console.log(item.filterSearch, item.name);
       if (item.filterSearch) item.options = await getData(item.api);
       if (item.name && item.defaultValue) {
         searchForm.resetFields();
@@ -58,9 +60,9 @@ export const SearchForm: React.FC<SearchFormPorps> = memo((props) => {
       }
     });
 
-    setTimeout(() => {
-      setSerachColumns([...searchColumns]);
-    }, 500);
+    // setTimeout(() => {
+    setSerachColumns([...searchColumns]);
+    // }, 500);
   }, [...searchColumns]);
 
   const onSearch = () => {
@@ -111,10 +113,8 @@ export const SearchForm: React.FC<SearchFormPorps> = memo((props) => {
     setIsExpend(!isExpend);
   };
 
-  console.log(style, 'style');
-
   return (
-    <div className={style['search-form']}>
+    <div className={'search-form'}>
       <Form
         onFinish={onFinish}
         {...formItemLayout}
@@ -122,15 +122,13 @@ export const SearchForm: React.FC<SearchFormPorps> = memo((props) => {
         labelAlign={labelPosition}
         form={searchForm}
       >
-        <Row gutter={gutterWidth} className={'gap-y-[10px]'}>
+        <Row gutter={gutterWidth}>
           {columns.map((item, index) => (
             <Col
               key={index}
               span={item.span}
               className={
-                isExpend && showRow && index + 1 > showRow * 4
-                  ? style['no-show']
-                  : ''
+                isExpend && showRow && index + 1 > showRow * 4 ? 'no-show' : ''
               }
               hidden={item.hidden}
             >
@@ -162,7 +160,7 @@ export const SearchForm: React.FC<SearchFormPorps> = memo((props) => {
         </Row>
       </Form>
       {btnSeparate && (
-        <div className="flex items-center justify-end mt-[10px]">
+        <div className={'btnSeparate'}>
           <Space>
             <Button
               type="primary"

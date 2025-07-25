@@ -5,8 +5,8 @@ const App = () => {
     console.log('handleClick');
   };
 
-  const onUpdateSearch = () => {
-    console.log('onUpdateSearch');
+  const onUpdateSearch = (info) => {
+    console.log('onUpdateSearch', info);
   };
 
   const columns = [
@@ -17,30 +17,67 @@ const App = () => {
       span: 6,
     },
     {
+      label: '是否启用',
+      name: 'enabled',
+      formType: 'normalSelect',
+      options: [
+        {
+          label: '启用',
+          value: 1,
+        },
+        {
+          label: '不启用',
+          value: 0,
+        },
+      ],
+      span: 6,
+    },
+    {
       label: '起运港',
       name: 'porCode',
       formType: 'normalSelect',
       options: [],
       span: 6,
+      // filterSearch: true,
     },
     {
-      label: '目的港',
-      name: 'fndCode',
+      label: '搜索测试',
+      name: 'select',
       formType: 'normalSelect',
-      options: [],
-      span: 6,
-    },
-    {
-      label: '细分航线',
-      name: 'router',
-      formType: 'normalSelect',
-      options: [],
+      options: [
+        {
+          name: '111',
+          value: '111',
+        },
+        {
+          name: '222',
+          value: '222',
+        },
+      ],
       selectFileldName: {
-        label: 'routeName',
-        value: 'id',
+        label: 'name',
+        value: 'value',
       },
       span: 6,
     },
+    // {
+    //   label: '目的港',
+    //   name: 'fndCode',
+    //   formType: 'normalSelect',
+    //   options: [],
+    //   span: 6,
+    // },
+    // {
+    //   label: '细分航线',
+    //   name: 'router',
+    //   formType: 'normalSelect',
+    //   options: [],
+    //   selectFileldName: {
+    //     label: 'routeName',
+    //     value: 'id',
+    //   },
+    //   span: 6,
+    // },
     {
       label: '放舱日期',
       name: 'create',
@@ -64,7 +101,7 @@ const App = () => {
         btnSeparate={true}
         isShowReset={true}
         isShowExpend={false}
-        onUpdateSearch={() => onUpdateSearch()}
+        onUpdateSearch={onUpdateSearch}
       />
     </>
   );

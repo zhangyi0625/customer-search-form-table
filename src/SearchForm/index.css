@@ -1,6 +1,5 @@
 .search-form {
   .search-form-item {
-    :global {
       .ant-select-selection-item > div > p:nth-of-type(2) {
         display: none !important;
       }
@@ -11,7 +10,7 @@
       }
     }
     .gow-style {
-      column-gap: 10px;
+      row-gap: 10px;
     }
     .btnSeparate {
       display: flex;
@@ -19,12 +18,9 @@
       justify-content: flex-end;
       margin-top: 10px;
     }
-  }
-  :global {
     .ant-select-selection-item > div > p:nth-of-type(2) {
       display: none !important;
     }
-  }
   .no-show {
     display: none !important;
   }

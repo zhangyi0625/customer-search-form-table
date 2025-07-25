@@ -72,11 +72,9 @@
     - $ npm run build
 ```
 
-# 未来计划更新
+# Future plan update
 
-:::note
-1、The options of select in SearchForm supports remote search or returning data through an interface（需要开启filterSearch）
-2、Add more components from the form to SearchFormItem
-3、Develop SearchTable to be linked with SearchForm, and tableData is returned through a custom getch interface
-4、Currently, only antd (v5.x.x) is supported. Subsequently, Material-UI, Element for React, React Bootstrap, Blueprint UI, Semantic UI React, etc. will be added...
-:::
+- The options of select in SearchForm supports remote search or returning data through an interface（需要开启filterSearch）
+- Add more components from the form to SearchFormItem
+- Develop SearchTable to be linked with SearchForm, and tableData is returned through a custom getch interface
+- Currently, only antd (v5.x.x) is supported. Subsequently, Material-UI, Element for React, React Bootstrap, Blueprint UI, Semantic UI React, etc. will be added...

@@ -1,4 +1,3 @@
-// import style from './index.module.scss';
 import './index.css';
 import { memo, useEffect, useState } from 'react';
 import { Button, Col, Form, Row, Space } from 'antd';
@@ -116,6 +115,12 @@ export const SearchForm: React.FC<SearchFormPorps> = memo((props) => {
     setIsExpend(!isExpend);
   };
 
+  const getColClass = (index: number) => {
+    return !btnSeparate
+      ? isExpend && showRow && index + 1 >= showRow * 4
+      : isExpend && showRow && index + 1 > showRow * 4;
+  };
+
   return (
     <div className={'search-form'}>
       <Form
@@ -130,9 +135,7 @@ export const SearchForm: React.FC<SearchFormPorps> = memo((props) => {
             <Col
               key={index}
               span={item.span}
-              className={
-                isExpend && showRow && index + 1 > showRow * 4 ? 'no-show' : ''
-              }
+              className={getColClass(index) ? 'no-show' : ''}
               hidden={item.hidden}
             >
               <SearchFormItem {...item} />

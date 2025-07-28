@@ -117,7 +117,7 @@ const App = () => {
         gutterWidth={24}
         labelPosition="left"
         showRow={2}
-        btnSeparate={true}
+        btnSeparate={false}
         isShowReset={true}
         isShowExpend={true}
         iconHidden={true}

@@ -66,7 +66,7 @@
 
 ## API
 
-[API](./src/SearchForm/docs/api.md) | [中文API](./src//SearchForm//docs/api_ZH.md)
+[API](./src/SearchForm/docs/api.md) | [中文API](./src/SearchForm/docs/api_ZH.md)
 
 ## Development
 

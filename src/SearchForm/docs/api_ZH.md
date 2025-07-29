@@ -2,18 +2,18 @@
 
 ## 属性
 
-| 参数          | 说明                                                           |          类型           | 可选值      | 默认值  |
-| ------------- | -------------------------------------------------------------- | :---------------------: | ----------- | :-----: |
-| gutterWidth   | 栅格属性Row                                                    |         number          | -           |   24    |
-| isShowExpend  | 是否显示展开、收缩（Collapse）                                 |         boolean         | true、false |  false  |
-| showRow       | 展开伸缩至多展示几行                                           |         number          | -           |    -    |
-| columns       | 表格columns(见下方[**CustomColumn 属性**](#CustomColumn-属性)) |          array          | -           |    -    |
-| btnSeparate   | 查询重制按钮所在位置 1、在Form中 2、单独一行在右下角           |         boolean         | true、false |  true   |
-| labelPosition | label 标签的文本对齐方式                                       | FormProps['labelAlign'] | left、right | left ｜ |
-| isShowReset   | 是否展示重置按钮（搜索按钮必须存在）                           |         string          | true、false |  true   |
-| searchBtnText | 搜索自定义文字 默认搜索                                        |         string          | -           |  搜索   |
-| resetBtnText  | 重置自定义文字 默认重置                                        |         string          | -           |  重置   |
-| iconHidden    | 显示按钮icon                                                   |         boolean         | true、false |  false  |
+| 参数          | 说明                                                           |          类型           | 可选值      | 默认值 |
+| ------------- | -------------------------------------------------------------- | :---------------------: | ----------- | :----: |
+| gutterWidth   | 栅格属性Row                                                    |         number          | -           |   24   |
+| isShowExpend  | 是否显示展开、收缩（Collapse）                                 |         boolean         | true、false | false  |
+| showRow       | 展开伸缩至多展示几行                                           |         number          | -           |   -    |
+| columns       | 表格columns(见下方[**CustomColumn 属性**](#CustomColumn-属性)) |          array          | -           |   -    |
+| btnSeparate   | 查询重制按钮所在位置 1、在Form中 2、单独一行在右下角           |         boolean         | true、false |  true  |
+| labelPosition | label 标签的文本对齐方式                                       | FormProps['labelAlign'] | left、right |  left  |
+| isShowReset   | 是否展示重置按钮（搜索按钮必须存在）                           |         string          | true、false |  true  |
+| searchBtnText | 搜索自定义文字 默认搜索                                        |         string          | -           |  搜索  |
+| resetBtnText  | 重置自定义文字 默认重置                                        |         string          | -           |  重置  |
+| iconHidden    | 显示按钮icon                                                   |         boolean         | true、false | false  |
 
 ### CustomColumn 属性
 

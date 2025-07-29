@@ -21,16 +21,17 @@
 
 ### CustomColumn 属性
 
-| 参数         | 说明                                                                                                    |          类型          | 可选值                                     | 默认值 |
-| ------------ | ------------------------------------------------------------------------------------------------------- | :--------------------: | ------------------------------------------ | :----: |
-| formType     | 展示字段的类型                                                                                          |         string         | input、normalSelect、cascader、date-picker |   -    |
-| options      | 仅在formType在select、cascader生效                                                                      | SelectProps['options'] | -                                          |   -    |
-| span         | 栅格属性Col                                                                                             |         number         | -                                          |   6    |
-| filterSearch | 需要异步请求的options                                                                                   |        boolean         | -                                          | false  |
-| api          | 部分options数据需通过函数获取，返回一个promise,开启此属性需要将filterSearch设置为true（Todo：暂未开放） |        function        | -                                          |   -    |
-| isRules      | Todo : form表单rules 暂时只支持基础空置校验                                                             |        boolean         | -                                          | false  |
-| defaultValue | 设置formItem初始值                                                                                      |        boolean         | -                                          |   -    |
-| isRules      | select、cascader类型中FileName                                                                          |    selectFileldName    | -                                          |   -    |
+| 参数             | 说明                                                                                                    |           类型            | 可选值                                     | 默认值 |
+| ---------------- | ------------------------------------------------------------------------------------------------------- | :-----------------------: | ------------------------------------------ | :----: |
+| formType         | 展示字段的类型                                                                                          |          string           | input、normalSelect、cascader、date-picker |   -    |
+| options          | 仅在formType在select、cascader生效                                                                      |  SelectProps['options']   | -                                          |   -    |
+| span             | 栅格属性Col                                                                                             |          number           | -                                          |   6    |
+| filterSearch     | 需要异步请求的options                                                                                   |          boolean          | -                                          | false  |
+| api              | 部分options数据需通过函数获取，返回一个promise,开启此属性需要将filterSearch设置为true（Todo：暂未开放） |         function          | -                                          |   -    |
+| isRules          | Todo : form表单rules 暂时只支持基础空置校验                                                             |          boolean          | -                                          | false  |
+| defaultValue     | 设置formItem初始值                                                                                      |          string           | -                                          |   -    |
+| selectFileldName | select、cascader中FileName                                                                              | SelectProps['fieldNames'] | -                                          |  null  |
+| hiddenItem       | 是否显示formItem 用于tab切换时存在不同的查询表头                                                        |          boolean          | -                                          | false  |
 
 注：更多继承FormItemProps属性，请参考 Antd UI[Form组件的文档](https://ant-design.antgroup.com/components/form-cn)。
 

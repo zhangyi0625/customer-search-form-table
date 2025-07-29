@@ -135,8 +135,8 @@ export const SearchForm: React.FC<SearchFormPorps> = memo((props) => {
             <Col
               key={index}
               span={item.span}
-              className={getColClass(index) ? 'no-show' : ''}
-              hidden={item.hidden}
+              className={getColClass(index) || item.hiddenItem ? 'no-show' : ''}
+              hidden={item.hiddenItem}
             >
               <SearchFormItem {...item} />
             </Col>

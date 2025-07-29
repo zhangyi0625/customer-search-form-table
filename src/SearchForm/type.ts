@@ -20,6 +20,8 @@ export interface CustomColumn extends FormItemType {
   defaultValue?: string | null;
   /** select、cascader中FileName */
   selectFileldName?: SelectProps['fieldNames'] | null;
+  /** 是否显示formItem 用于tab切换时存在不同的查询表头 */
+  hiddenItem: boolean;
 }
 
 export type SearchFormPorps = {

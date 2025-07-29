@@ -1,38 +1,61 @@
+import { useState } from 'react';
 import { Button, SearchForm } from '../src/index';
+import axios from 'axios';
 
 const App = () => {
   const handleClick = () => {
     console.log('handleClick');
+    columns.map((item) => {
+      if (item.formType === 'normalSelect') item.hiddenItem = true;
+    });
+    setColumns([...columns]);
   };
 
   const onUpdateSearch = (info) => {
     console.log('onUpdateSearch', info);
+
+    axios
+      .get('https://wx.zaicang.net/api/common/location/list', {
+        params: {
+          tag: 'POR',
+        },
+      })
+      .then(function (response) {
+        console.log(response);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
   };
 
-  const columns = [
+  const column = [
     {
       label: '测试',
       name: 'test',
       formType: 'input',
       span: 6,
+      hiddenItem: false,
     },
     {
       label: '测试1',
       name: 'test1',
       formType: 'input',
       span: 6,
+      hiddenItem: false,
     },
     {
       label: '测试2',
       name: 'test2',
       formType: 'input',
       span: 6,
+      hiddenItem: false,
     },
     {
       label: '测试3',
       name: 'test3',
       formType: 'input',
       span: 6,
+      hiddenItem: false,
     },
     {
       label: '是否启用',
@@ -49,6 +72,7 @@ const App = () => {
         },
       ],
       span: 6,
+      hiddenItem: false,
     },
     {
       label: 'porCode',
@@ -56,6 +80,7 @@ const App = () => {
       formType: 'normalSelect',
       options: [],
       span: 6,
+      hiddenItem: false,
       // filterSearch: true,
     },
     {
@@ -77,6 +102,7 @@ const App = () => {
         value: 'value',
       },
       span: 6,
+      hiddenItem: false,
     },
     {
       label: 'fndCode',
@@ -84,6 +110,7 @@ const App = () => {
       formType: 'normalSelect',
       options: [],
       span: 6,
+      hiddenItem: false,
     },
     {
       label: 'area',
@@ -94,6 +121,7 @@ const App = () => {
         label: 'routeName',
         value: 'id',
       },
+      hiddenItem: false,
       span: 6,
     },
     {
@@ -101,8 +129,11 @@ const App = () => {
       name: 'create',
       formType: 'date-picker',
       span: 6,
+      hiddenItem: false,
     },
   ];
+
+  const [columns, setColumns] = useState(column);
 
   return (
     <>

@@ -11,29 +11,39 @@ import {
 import { SelectProps } from 'antd/lib';
 import { debounce } from 'lodash-es';
 import type { CustomColumn } from './type';
+import axios from 'axios';
 
-// type fetchValueType = Pick<CustomColumn, 'name' | 'api' | 'tag'> & {
-//   value: string | null;
-// };
+type fetchValueType = Pick<
+  CustomColumn,
+  'name' | 'apiByUrl' | 'apiByUrlMethod' | 'apiByUrlParams' | 'selectResultKey'
+> & {
+  value: string | null;
+};
 
 type DefaultOptionType = GetProp<CascaderProps, 'options'>[number];
 
-// const fetchSearch = debounce(
-//   (value: fetchValueType, callback: (data: any) => void) => {
-//     value.api({ keyword: value.value, tag: value.tag }).then((res: any) => {
-//       callback(res);
-//     });
-//   },
-//   300,
-// );
+const fetchSearch = debounce(
+  (value: fetchValueType, callback: (data: any) => void) => {
+    (axios as any)
+      [
+        value.apiByUrlMethod ?? 'get'
+      ](value.apiByUrl, value.apiByUrlMethod === 'get' ? { params: value.apiByUrlParams } : value.apiByUrlParams)
+      .then((res: any) => {
+        callback(res[value.selectResultKey ?? 'data']);
+      });
+  },
+  300,
+);
 
 const SearchFormItem: React.FC<CustomColumn> = memo((props) => {
   const {
     label,
     name,
     formType,
-    // api,
-    // tag,
+    apiByUrl,
+    apiByUrlMethod,
+    apiByUrlParams,
+    selectResultKey,
     options,
     isRules,
     selectFileldName,
@@ -46,26 +56,25 @@ const SearchFormItem: React.FC<CustomColumn> = memo((props) => {
   const [defalueOptions, setDefaultOptions] =
     useState<SelectProps['options']>(options);
 
-  // const handleSearch = (
-  //   newVal: string,
-  //   type: string,
-  //   API: any,
-  //   tag: string | undefined,
-  // ) => {
-  //   fetchSearch(
-  //     { value: newVal, name: type, api: API, tag },
-  //     setDefaultOptions,
-  //   );
-  // };
+  const handleSearch = (
+    newVal: string,
+    params: Pick<
+      CustomColumn,
+      'apiByUrl' | 'apiByUrlMethod' | 'apiByUrlParams' | 'selectResultKey'
+    >,
+  ) => {
+    // fetchSearch({ value: newVal, ...params }, setDefaultOptions);
+  };
 
-  // const selectFoucs = (name: string, API: any, tag: string | undefined) => {
-  //   if (portNameOptions.includes(name)) {
-  //     fetchSearch(
-  //       { value: null, name: name, api: API, tag },
-  //       setDefaultOptions,
-  //     );
-  //   } else setDefaultOptions(options);
-  // };
+  const selectFoucs = (
+    name: string,
+    params: Pick<
+      CustomColumn,
+      'apiByUrl' | 'apiByUrlMethod' | 'apiByUrlParams' | 'selectResultKey'
+    >,
+  ) => {
+    fetchSearch({ value: null, name: name, ...params }, setDefaultOptions);
+  };
 
   const selectOptions = () => {
     return (defalueOptions || []).map((item) =>
@@ -87,8 +96,8 @@ const SearchFormItem: React.FC<CustomColumn> = memo((props) => {
                 : item.id,
           }
         : {
-            value: item.id,
-            label: item.name,
+            value: item[selectFileldName?.value as string],
+            label: item[selectFileldName?.label as string],
           },
     );
   };
@@ -145,6 +154,29 @@ const SearchFormItem: React.FC<CustomColumn> = memo((props) => {
             options={selectOptions()}
           />
         )} */}
+        {formType === 'focusSelect' && (
+          <Select
+            allowClear
+            placeholder={`请选择${label}`}
+            showSearch
+            defaultActiveFirstOption={false}
+            filterOption={(input, option) =>
+              String(option?.label ?? '')
+                .toLowerCase()
+                .includes(input.toLowerCase())
+            }
+            onFocus={() =>
+              selectFoucs(name, {
+                apiByUrl,
+                apiByUrlMethod,
+                apiByUrlParams,
+                selectResultKey,
+              })
+            }
+            popupMatchSelectWidth={portNameOptions.includes(name) ? 240 : true}
+            options={selectOptions()}
+          />
+        )}
         {formType === 'normalSelect' && (
           <Select
             allowClear

@@ -20,13 +20,4 @@ export default defineConfig({
     target: 'web',
   },
   plugins: [pluginReact(), pluginSass(), pluginMdx()],
-  server: {
-    proxy: {
-      '/api': {
-        target: 'https://wx.zaicang.net',
-        changeOrigin: true,
-        pathRewrite: (path) => path.replace(/^\/api/, ''),
-      },
-    },
-  },
 });

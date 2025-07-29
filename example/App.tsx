@@ -2,6 +2,10 @@ import { useState } from 'react';
 import { Button, SearchForm } from '../src/index';
 import axios from 'axios';
 
+const getLocation = () => {
+  return axios.get('/api/common/carrier/brand/list', {});
+};
+
 const App = () => {
   const handleClick = () => {
     console.log('handleClick');
@@ -13,19 +17,6 @@ const App = () => {
 
   const onUpdateSearch = (info) => {
     console.log('onUpdateSearch', info);
-
-    axios
-      .get('https://wx.zaicang.net/api/common/location/list', {
-        params: {
-          tag: 'POR',
-        },
-      })
-      .then(function (response) {
-        console.log(response);
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
   };
 
   const column = [
@@ -35,6 +26,7 @@ const App = () => {
       formType: 'input',
       span: 6,
       hiddenItem: false,
+      selectFetch: false,
     },
     {
       label: '测试1',
@@ -42,6 +34,7 @@ const App = () => {
       formType: 'input',
       span: 6,
       hiddenItem: false,
+      selectFetch: false,
     },
     {
       label: '测试2',
@@ -49,17 +42,46 @@ const App = () => {
       formType: 'input',
       span: 6,
       hiddenItem: false,
+      selectFetch: false,
     },
     {
       label: '测试3',
       name: 'test3',
-      formType: 'input',
+      formType: 'focusSelect',
+      options: [],
+      selectFetch: true,
+      apiByUrl: '/api/common/location/list',
+      apiByUrlMethod: 'get',
+      apiByUrlParams: {
+        tag: 'POR',
+        keyword: null,
+      },
+      selectFileldName: {
+        label: 'localName',
+        value: 'unlocode',
+      },
+      selectResultKey: 'data',
       span: 6,
       hiddenItem: false,
     },
     {
       label: '测试4',
       name: 'test4',
+      formType: 'normalSelect',
+      options: [],
+      selectFetch: true,
+      api: getLocation,
+      selectFileldName: {
+        label: 'carrierCode',
+        value: 'carrierCode',
+      },
+      selectResultKey: 'data',
+      span: 6,
+      hiddenItem: false,
+    },
+    {
+      label: '测试5',
+      name: 'test5',
       formType: 'normalSelect',
       options: [
         {
@@ -79,6 +101,7 @@ const App = () => {
           value: 4,
         },
       ],
+      selectFetch: false,
       span: 6,
       hiddenItem: false,
     },
@@ -96,7 +119,9 @@ const App = () => {
           value: 0,
         },
       ],
+      defaultValue: 1,
       span: 6,
+      selectFetch: false,
       hiddenItem: false,
     },
     {
@@ -106,7 +131,7 @@ const App = () => {
       options: [],
       span: 6,
       hiddenItem: false,
-      // filterSearch: true,
+      selectFetch: false,
     },
     {
       label: '搜索测试',
@@ -126,6 +151,7 @@ const App = () => {
         label: 'name',
         value: 'value',
       },
+      selectFetch: false,
       span: 6,
       hiddenItem: false,
     },
@@ -136,12 +162,14 @@ const App = () => {
       options: [],
       span: 6,
       hiddenItem: false,
+      selectFetch: false,
     },
     {
       label: 'area',
       name: 'router',
       formType: 'normalSelect',
       options: [],
+      selectFetch: false,
       selectFileldName: {
         label: 'routeName',
         value: 'id',
@@ -155,6 +183,7 @@ const App = () => {
       formType: 'date-picker',
       span: 6,
       hiddenItem: false,
+      selectFetch: false,
     },
   ];
 

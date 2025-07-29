@@ -39,30 +39,42 @@ export const SearchForm: React.FC<SearchFormPorps> = memo((props) => {
 
   const [searchColumns, setSerachColumns] = useState<CustomColumn[]>(columns);
 
-  const onFinish = (value: unknown) => {
-    onUpdateSearch(value);
+  const onFinish = () => {
+    // onUpdateSearch(value);
+    onSearch();
   };
 
   useEffect(() => {
-    const getData = async (api?: any, selectFileldName?: any) => {
+    const getData = async (
+      api?: any,
+      selectFileldName?: any,
+      selectResultKey = 'data',
+    ) => {
       const result = await replaceObjectName(
-        await api(),
-        Object.keys(selectFileldName),
+        (await api())[selectResultKey],
         Object.keys(selectFileldName).map(
           (key: string) => selectFileldName[key],
         ),
+        Object.keys(selectFileldName),
       );
       return result;
     };
     searchColumns.map(async (item: CustomColumn) => {
-      if (item.filterSearch)
-        item.options = await getData(item.api, item.selectFileldName);
+      if (item.selectFetch && !item.apiByUrl)
+        item.options = await getData(
+          item.api,
+          item.selectFileldName,
+          item.selectResultKey,
+        );
       if (item.name && item.defaultValue) {
         searchForm.resetFields();
         searchForm.setFieldsValue({ [item.name]: item.defaultValue });
       }
     });
-    setSerachColumns([...searchColumns]);
+    setTimeout(() => {
+      setSerachColumns([...searchColumns]);
+      console.log(searchColumns, 'searchColumns');
+    }, 300);
   }, [...searchColumns]);
 
   const onSearch = () => {

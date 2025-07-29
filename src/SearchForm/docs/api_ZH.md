@@ -17,17 +17,21 @@
 
 ### CustomColumn 属性
 
-| 参数             | 说明                                                                                  |           类型            | 可选值                                     | 默认值 |
-| ---------------- | ------------------------------------------------------------------------------------- | :-----------------------: | ------------------------------------------ | :----: |
-| formType         | 展示字段的类型                                                                        |          string           | input、normalSelect、cascader、date-picker |   -    |
-| options          | 仅在formType在select、cascader生效                                                    |  SelectProps['options']   | -                                          |   -    |
-| span             | 栅格属性Col                                                                           |          number           | -                                          |   6    |
-| filterSearch     | 需要异步请求的options                                                                 |          boolean          | -                                          | false  |
-| api              | 部分options数据需通过函数获取，返回一个promise,开启此属性需要将filterSearch设置为true |         function          | -                                          |   -    |
-| isRules          | Todo : form表单rules 暂时只支持基础空值校验                                           |          boolean          | -                                          | false  |
-| defaultValue     | 设置formItem初始值                                                                    |          string           | -                                          |   -    |
-| selectFileldName | select、cascader中FileName                                                            | SelectProps['fieldNames'] | -                                          |  null  |
-| hiddenItem       | 是否显示formItem 用于tab切换时存在不同的查询表头                                      |          boolean          | -                                          | false  |
+| 参数             | 说明                                                                                                                                               |           类型            | 可选值                                                  | 默认值 |
+| ---------------- | -------------------------------------------------------------------------------------------------------------------------------------------------- | :-----------------------: | ------------------------------------------------------- | :----: |
+| formType         | 展示字段的类型                                                                                                                                     |          string           | input、normalSelect、cascader、date-picker、focusSelect |   -    |
+| options          | 仅在formType在select、cascader生效                                                                                                                 |  SelectProps['options']   | -                                                       |   -    |
+| span             | 栅格属性Col                                                                                                                                        |          number           | -                                                       |   6    |
+| selectFetch      | 需要异步请求的options                                                                                                                              |          boolean          | true、false                                             | false  |
+| api              | select搜索需要通过接口,函数返回一个promise,设置该属性后，apiByUrl属性则无效                                                                        |         function          | -                                                       |   -    |
+| selectResultKey  | 异步请求返回结果response的key值                                                                                                                    |          string           | -                                                       |  data  |
+| apiByUrl         | select搜索需要通过接口地址，设置该属性后，selectFetch属性则无效（设置该属性基本用于select下拉框展开时搜索远程数据，需要将formType改为focusSelect） |          string           | -                                                       |   -    |
+| apiByUrlMethod   | 接口地址调用方法，该属性配合apiByUrl使用                                                                                                           |          string           | get、post                                               |   -    |
+| apiByUrlParams   | 接口地址需要传的参数，该属性配合apiByUrl使用                                                                                                       |          object           | -                                                       |   -    |
+| isRules          | Todo : form表单rules 暂时只支持基础空值校验                                                                                                        |          boolean          | -                                                       | false  |
+| defaultValue     | 设置formItem初始值                                                                                                                                 |          string           | -                                                       |   -    |
+| selectFileldName | select、cascader中FileName                                                                                                                         | SelectProps['fieldNames'] | -                                                       |  null  |
+| hiddenItem       | 是否显示formItem 用于tab切换时存在不同的查询表头                                                                                                   |          boolean          | -                                                       | false  |
 
 注：更多继承FormItemProps属性，请参考 Antd UI[Form组件的文档](https://ant-design.antgroup.com/components/form-cn)。
 

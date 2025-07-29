@@ -35,6 +35,6 @@ jobs:
 
       - name: Run semantic-release
         env:
-          GITHUB_TOKEN: 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
+          GITHUB_TOKEN: ${{ secrets.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}}
           NPM_TOKEN: secrets.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
         run: npx semantic-release

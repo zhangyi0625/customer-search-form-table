@@ -1,5 +1,6 @@
 import { defineConfig } from '@rsbuild/core';
 import { pluginReact } from '@rsbuild/plugin-react';
+import { pluginMdx } from '@rsbuild/plugin-mdx';
 import { pluginSass } from '@rsbuild/plugin-sass';
 
 export default defineConfig({
@@ -11,6 +12,7 @@ export default defineConfig({
         //   additionalData: `@use 'src/styles/variables.scss' as *;`,
       },
     }),
+    pluginMdx(),
   ],
   source: {
     entry: {

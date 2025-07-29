@@ -9,15 +9,15 @@
 | Attribute     | Description                                                                                               |          Type           | Accepted Values | Default |
 | ------------- | --------------------------------------------------------------------------------------------------------- | :---------------------: | --------------- | :-----: |
 | gutterWidth   | The raster attribute is Row                                                                               |         number          | -               |   24    |
-| isShowExpend  | Whether to display Collapse or collapse                                                                   |         boolean         | false           |
+| isShowExpend  | Whether to display Collapse or collapse                                                                   |         boolean         | true、false     |  false  |
 | showRow       | Expand and stretch to display at most a few lines                                                         |         number          | -               |    -    |
 | columns       | Table columns(see the [**CustomColumn attribute **](#CustomColumn- attribute) below)                      |          array          | -               |    -    |
-| btnSeparate   | Query the location of the redo button: 1. In the Form, it is on a separate line at the lower right corner |         boolean         | -               |    -    |
-| labelPosition | The text alignment method of the label                                                                    | FormProps['labelAlign'] | -               |
-| isShowReset   | Whether to display the reset button (the search button must exist)                                        |         string          | -               |  true   |
+| btnSeparate   | Query the location of the redo button: 1. In the Form, it is on a separate line at the lower right corner |         boolean         | true、false     |  true   |
+| labelPosition | The text alignment method of the label                                                                    | FormProps['labelAlign'] | left、right     |  left   |
+| isShowReset   | Whether to display the reset button (the search button must exist)                                        |         string          | true、false     |  true   |
 | searchBtnText | Default search for custom text                                                                            |         string          | -               | search  |
 | resetBtnText  | Reset custom text by default                                                                              |         string          | -               |  reset  |
-| iconHidden    | Display button icon                                                                                       |         boolean         | -               |  true   |
+| iconHidden    | Display button icon                                                                                       |         boolean         | true、false     |  false  |
 
 ### CustomColumn Attribute
 

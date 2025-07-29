@@ -33,7 +33,7 @@ export type SearchFormPorps = {
   showRow?: number;
   /** form columns */
   columns: CustomColumn[];
-  /** 查询重制按钮所在位置 1、在Form中 || 单独一行在右下角 */
+  /** 查询重制按钮所在位置 1、在Form中 2、单独一行在右下角 */
   btnSeparate: boolean;
   /** labelPosition */
   labelPosition: FormProps['labelAlign'];

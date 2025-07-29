@@ -1,5 +1,6 @@
 import { pluginReact } from '@rsbuild/plugin-react';
 import { pluginSass } from '@rsbuild/plugin-sass';
+import { pluginMdx } from '@rsbuild/plugin-mdx';
 import { defineConfig } from '@rslib/core';
 
 export default defineConfig({
@@ -18,7 +19,7 @@ export default defineConfig({
   output: {
     target: 'web',
   },
-  plugins: [pluginReact(), pluginSass()],
+  plugins: [pluginReact(), pluginSass(), pluginMdx()],
   server: {
     proxy: {
       '/api': {

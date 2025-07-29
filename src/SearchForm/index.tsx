@@ -21,16 +21,16 @@ const formItemLayout = {
 
 export const SearchForm: React.FC<SearchFormPorps> = memo((props) => {
   const {
-    gutterWidth,
+    gutterWidth = 24,
     showRow,
     columns,
-    labelPosition,
-    btnSeparate,
-    isShowReset,
-    isShowExpend,
+    labelPosition = 'left',
+    btnSeparate = true,
+    isShowReset = true,
+    isShowExpend = false,
     searchBtnText,
     resetBtnText,
-    iconHidden,
+    iconHidden = false,
     onUpdateSearch,
   } = props;
 
@@ -130,7 +130,7 @@ export const SearchForm: React.FC<SearchFormPorps> = memo((props) => {
         labelAlign={labelPosition}
         form={searchForm}
       >
-        <Row gutter={gutterWidth}>
+        <Row gutter={gutterWidth ?? 24}>
           {columns.map((item, index) => (
             <Col
               key={index}

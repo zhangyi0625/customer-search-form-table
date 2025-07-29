@@ -170,7 +170,13 @@ const SearchFormItem: React.FC<CustomColumn> = memo((props) => {
             placeholder={`请输入${label}`}
             showSearch={{ filter }}
             allowClear
-            fieldNames={{ label: 'text', children: 'children' }}
+            fieldNames={
+              selectFileldName ?? {
+                label: 'label',
+                value: 'value',
+                children: 'children',
+              }
+            }
           />
         )}
         {formType === 'date-picker' && (

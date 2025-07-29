@@ -6,7 +6,6 @@ import SearchFormItem from './SearchFormItem';
 import type { CustomColumn, SearchFormPorps } from './type';
 import { filterKeys, replaceObjectName } from '../utils/tool';
 import { formatTime } from '../utils/format';
-import { isArray } from 'lodash-es';
 
 const formItemLayout = {
   labelCol: {
@@ -45,26 +44,25 @@ export const SearchForm: React.FC<SearchFormPorps> = memo((props) => {
   };
 
   useEffect(() => {
-    const getData = async (api?: any) => {
+    const getData = async (api?: any, selectFileldName?: any) => {
       const result = await replaceObjectName(
         await api(),
-        ['carrierCode', 'carrierCode'],
-        ['id', 'name'],
+        Object.keys(selectFileldName),
+        Object.keys(selectFileldName).map(
+          (key: string) => selectFileldName[key],
+        ),
       );
       return result;
     };
     searchColumns.map(async (item: CustomColumn) => {
-      // console.log(item.filterSearch, item.name);
-      if (item.filterSearch) item.options = await getData(item.api);
+      if (item.filterSearch)
+        item.options = await getData(item.api, item.selectFileldName);
       if (item.name && item.defaultValue) {
         searchForm.resetFields();
         searchForm.setFieldsValue({ [item.name]: item.defaultValue });
       }
     });
-
-    // setTimeout(() => {
     setSerachColumns([...searchColumns]);
-    // }, 500);
   }, [...searchColumns]);
 
   const onSearch = () => {
@@ -88,10 +86,6 @@ export const SearchForm: React.FC<SearchFormPorps> = memo((props) => {
         params = {
           ...filterKeys(searchForm.getFieldsValue(), nameKey, false),
           ...params,
-          // fndCode:
-          //   (isArray(searchForm.getFieldValue('fndCode'))
-          //     ? searchForm.getFieldValue('fndCode')[1]
-          //     : searchForm.getFieldValue('fndCode')) ?? '',
           [`${item}Start`]: formatTime(
             searchForm.getFieldsValue()[item][0],
             'Y-M-D h:m:s',
@@ -109,10 +103,6 @@ export const SearchForm: React.FC<SearchFormPorps> = memo((props) => {
   const onReset = () => {
     searchForm.resetFields();
     onSearch();
-  };
-
-  const changeExpend = () => {
-    setIsExpend(!isExpend);
   };
 
   const getColClass = (index: number) => {
@@ -161,7 +151,10 @@ export const SearchForm: React.FC<SearchFormPorps> = memo((props) => {
                   </Button>
                 )}
                 {isShowExpend && (
-                  <a style={{ fontSize: '12px' }} onClick={changeExpend}>
+                  <a
+                    style={{ fontSize: '12px' }}
+                    onClick={() => setIsExpend(!isExpend)}
+                  >
                     <DownOutlined rotate={isExpend ? 180 : 0} />
                     Collapse
                   </a>
@@ -192,7 +185,10 @@ export const SearchForm: React.FC<SearchFormPorps> = memo((props) => {
               </Button>
             )}
             {isShowExpend && (
-              <a style={{ fontSize: '12px' }} onClick={changeExpend}>
+              <a
+                style={{ fontSize: '12px' }}
+                onClick={() => setIsExpend(!isExpend)}
+              >
                 <DownOutlined rotate={isExpend ? 180 : 0} />
                 Collapse
               </a>

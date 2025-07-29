@@ -80,7 +80,7 @@
 
 # 未来计划更新
 
-- SearchForm中select的options支持远程搜索或者通过接口返回data（需要开启filterSearch）
+- SearchForm中select的options支持远程搜索或者通过接口返回data（需要开启filterSearch）[in Beta版]
 - 将更多form中的组件加入SearchFormItem
 - 开发SearchTable联动SearchForm，tableData通过自定义getch接口返回
 - 现有只支持antd（v5.x.x）,后续将加入Material-UI、Element for React、React Bootstrap、Blueprint UI、Semantic UI React等...

@@ -1,6 +1,6 @@
 import type { SelectProps, FormItemProps, FormProps } from 'antd';
 
-type FormItemType = Pick<FormItemProps, 'label' | 'name' | 'hidden'>;
+type FormItemType = Pick<FormItemProps, 'label' | 'name'>;
 
 export interface CustomColumn extends FormItemType {
   /** formItem 类型 */

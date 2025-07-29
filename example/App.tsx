@@ -189,6 +189,9 @@ const App = () => {
 
   const [columns, setColumns] = useState(column);
 
+  //   GITHUB_TOKEN: secrets.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
+  // NPM_TOKEN: secrets.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
+
   return (
     <>
       <div className="">Hellop World</div>

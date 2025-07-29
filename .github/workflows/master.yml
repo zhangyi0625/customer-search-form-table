@@ -30,6 +30,9 @@ jobs:
       - name: Build
         run: pnpm build
 
+      - name: Install semantic-release
+        run: pnpm add -g semantic-release
+
       - name: Run semantic-release
         env:
           GITHUB_TOKEN: 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

@@ -56,6 +56,8 @@ const SearchFormItem: React.FC<CustomColumn> = memo((props) => {
   const [defalueOptions, setDefaultOptions] =
     useState<SelectProps['options']>(options);
 
+  const [focusSelectLoading, setFocusSelectLoading] = useState<boolean>(false);
+
   const handleSearch = (
     newVal: string,
     params: Pick<
@@ -73,7 +75,11 @@ const SearchFormItem: React.FC<CustomColumn> = memo((props) => {
       'apiByUrl' | 'apiByUrlMethod' | 'apiByUrlParams' | 'selectResultKey'
     >,
   ) => {
+    setFocusSelectLoading(true);
     fetchSearch({ value: null, name: name, ...params }, setDefaultOptions);
+    // setTimeout(() => {
+    setFocusSelectLoading(false);
+    // }, 1000);
   };
 
   const selectOptions = () => {
@@ -165,6 +171,7 @@ const SearchFormItem: React.FC<CustomColumn> = memo((props) => {
                 .toLowerCase()
                 .includes(input.toLowerCase())
             }
+            loading={focusSelectLoading}
             onFocus={() =>
               selectFoucs(name, {
                 apiByUrl,

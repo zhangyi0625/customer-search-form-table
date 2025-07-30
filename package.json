@@ -20,6 +20,10 @@
     "test": "vitest run"
   },
   "devDependencies": {
+    "antd": "^5.23.2",
+    "@ant-design/icons": "^5.6.0",
+    "axios": "^1.7.9",
+    "lodash-es": "^4.17.21",
     "@eslint/js": "^9.30.0",
     "@rsbuild/core": "^1.4.9",
     "@rsbuild/plugin-mdx": "^1.0.2",
@@ -47,11 +51,7 @@
   },
   "private": true,
   "dependencies": {
-    "@ant-design/v5-patch-for-react-19": "^1.0.3",
-    "antd": "^5.23.2",
-    "@ant-design/icons": "^5.6.0",
-    "axios": "^1.7.9",
-    "lodash-es": "^4.17.21"
+    "@ant-design/v5-patch-for-react-19": "^1.0.3"
   },
   "eslintConfig": {
     "rules": {

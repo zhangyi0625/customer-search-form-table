@@ -25,4 +25,14 @@ export default defineConfig({
     },
     assetPrefix: './',
   },
+  server: {
+    open: false,
+    proxy: {
+      '/api': {
+        target: 'https://wx.zaicang.net/api',
+        changeOrigin: true,
+        pathRewrite: (path) => path.replace(/^\/api/, ''),
+      },
+    },
+  },
 });

@@ -1,0 +1,31 @@
+.search-form {
+  .search-form-item {
+    // .portSelect {
+    // .ant-select-selection-item > div > p:nth-of-type(2) {
+    //   display: none !important;
+    //   margin: unset !important;
+    // }
+    // .ant-select-item-option-content > div > p:last-of-type(1) {
+    //   font-size: 12px !important;
+    //   color: #909399 !important;
+    //   font-weight: 400 !important;
+    //   margin: unset !important;
+    // }
+    // }
+  }
+  .gow-style {
+    row-gap: 10px;
+  }
+  .btnSeparate {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    margin-top: 10px;
+  }
+  .ant-select-selection-item > div > p:nth-of-type(2) {
+    display: none !important;
+  }
+  .no-show {
+    display: none !important;
+  }
+}

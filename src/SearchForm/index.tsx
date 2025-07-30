@@ -1,4 +1,4 @@
-import './index.css';
+import './index.scss';
 import { memo, useEffect, useState } from 'react';
 import { Button, Col, Form, Row, Space } from 'antd';
 import { DownOutlined, RedoOutlined, SearchOutlined } from '@ant-design/icons';
@@ -73,7 +73,6 @@ export const SearchForm: React.FC<SearchFormPorps> = memo((props) => {
     });
     setTimeout(() => {
       setSerachColumns([...searchColumns]);
-      console.log(searchColumns, 'searchColumns');
     }, 300);
   }, [...searchColumns]);
 

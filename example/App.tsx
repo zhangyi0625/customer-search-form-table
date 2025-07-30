@@ -47,22 +47,11 @@ const App = () => {
     {
       label: '测试3',
       name: 'test3',
-      formType: 'focusSelect',
+      formType: 'normalSelect',
       options: [],
-      selectFetch: true,
-      apiByUrl: '/api/common/location/list',
-      apiByUrlMethod: 'get',
-      apiByUrlParams: {
-        tag: 'POR',
-        keyword: null,
-      },
-      selectFileldName: {
-        label: 'localName',
-        value: 'unlocode',
-      },
-      selectResultKey: 'data',
       span: 6,
       hiddenItem: false,
+      selectFetch: false,
     },
     {
       label: '测试4',
@@ -127,11 +116,22 @@ const App = () => {
     {
       label: 'porCode',
       name: 'porCode',
-      formType: 'normalSelect',
+      formType: 'focusSelect',
       options: [],
+      selectFetch: true,
+      apiByUrl: '/api/common/location/list',
+      apiByUrlMethod: 'get',
+      apiByUrlParams: {
+        tag: 'POR',
+        keyword: null,
+      },
+      selectFileldName: {
+        label: 'localName',
+        value: 'unlocode',
+      },
+      selectResultKey: 'data',
       span: 6,
       hiddenItem: false,
-      selectFetch: false,
     },
     {
       label: '搜索测试',

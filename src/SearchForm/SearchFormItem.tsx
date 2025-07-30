@@ -181,6 +181,11 @@ const SearchFormItem: React.FC<CustomColumn> = memo((props) => {
               })
             }
             popupMatchSelectWidth={portNameOptions.includes(name) ? 240 : true}
+            classNames={{
+              popup: {
+                root: 'portSelect',
+              },
+            }}
             options={selectOptions()}
           />
         )}

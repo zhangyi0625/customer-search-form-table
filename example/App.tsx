@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Button, SearchForm } from '../src/index';
+import { SearchForm } from '../src/index';
 import axios from 'axios';
 
 const getLocation = () => {
@@ -195,11 +195,7 @@ const App = () => {
   return (
     <>
       <div className="">Hellop World</div>
-      <Button
-        label="测试button"
-        size="medium"
-        onClick={() => handleClick()}
-      ></Button>
+      <div onClick={() => handleClick()}>测试button</div>
       <SearchForm
         columns={columns}
         gutterWidth={24}

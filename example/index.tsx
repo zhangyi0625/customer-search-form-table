@@ -10,8 +10,8 @@ const rootEl = document.getElementById('root');
 if (rootEl) {
   const root = createRoot(rootEl);
   root.render(
-    <React.StrictMode>
-      <App />
-    </React.StrictMode>,
+    // <React.StrictMode>
+    <App />,
+    // </React.StrictMode>,
   );
 }

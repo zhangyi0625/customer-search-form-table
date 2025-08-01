@@ -87,11 +87,11 @@ Search—table：[API](./src/SearchTable/docs/api.md) | [中文API](./src/Search
 - Add more components from the form to SearchFormItem
 - Currently, only antd (v5.x.x) is supported. Subsequently, Material-UI, Element for React, React Bootstrap, Blueprint UI, Semantic UI React, etc. will be added...
 
-## 参与贡献
+## Participation、contribution
 
 > [!NOTE]
 > Any contribution to open-source components is very welcome！
 
-## 交流
+## Communication
 
 📖 📖 📖 Welcome everyone to add me on wx (zy-zy625) to exchange ideas about components and discuss front-end development

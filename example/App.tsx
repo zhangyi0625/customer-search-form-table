@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { SearchForm } from '../src/index';
 import { SearchTable } from '../src/index';
 import axios from 'axios';
-import { Button, Space, TableProps } from 'antd';
+import { Button, Card, Space, TableProps } from 'antd';
 import { formatTime } from '../src/utils/format';
 
 const getLocation = () => {
@@ -35,6 +35,9 @@ const App = () => {
 
   const onUpdateSearch = (info) => {
     console.log('onUpdateSearch', info);
+    // setImmediate(true);
+    setSearchDefaultForm({ ...searchDefaultForm });
+    // setImmediate(false);
   };
 
   const column = [
@@ -306,35 +309,40 @@ const App = () => {
     <>
       <div className="">Hellop World</div>
       <div onClick={() => handleClick()}>测试button</div>
-      <SearchForm
-        columns={column}
-        gutterWidth={24}
-        labelPosition="left"
-        showRow={2}
-        btnSeparate={false}
-        isShowReset={true}
-        isShowExpend={true}
-        iconHidden={true}
-        searchBtnText="查询"
-        advancedFilterText={['收起', '展开']}
-        onUpdateSearch={onUpdateSearch}
-      />
       <div style={{ margin: '20px 0' }}></div>
-      <SearchTable
-        columns={tableColumns}
-        size="middle"
-        bordered
-        rowKey="id"
-        immediate={immediate}
-        totalKey="total"
-        fetchData={getCabinManageListByPage}
-        searchFilter={searchDefaultForm}
-        fetchResultKey="entries"
-        isSelection={false}
-        isPagination={true}
-        onUpdatePagination={onUpdatePagination}
-        onUpdateSelection={(options: string[]) => setSelected(options)}
-      />
+      <Card>
+        <SearchForm
+          columns={column}
+          gutterWidth={24}
+          labelPosition="left"
+          showRow={2}
+          btnSeparate={false}
+          isShowReset={true}
+          isShowExpend={true}
+          iconHidden={true}
+          searchBtnText="查询"
+          advancedFilterText={['收起', '展开']}
+          onUpdateSearch={onUpdateSearch}
+        />
+      </Card>
+      <div style={{ margin: '20px 0' }}></div>
+      <Card>
+        <SearchTable
+          columns={tableColumns}
+          size="middle"
+          bordered
+          rowKey="id"
+          immediate={immediate}
+          totalKey="total"
+          fetchData={getCabinManageListByPage}
+          searchFilter={searchDefaultForm}
+          fetchResultKey="entries"
+          isSelection={true}
+          isPagination={true}
+          onUpdatePagination={onUpdatePagination}
+          onUpdateSelection={(options: string[]) => setSelected(options)}
+        />
+      </Card>
     </>
   );
 };

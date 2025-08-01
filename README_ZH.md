@@ -4,6 +4,8 @@
 [English](README.md) | [简体中文](README_ZH.md)
 
 - 📦 使用 [rslib](https://github.com/web-infra-dev/rslib) 构建
+- 🔄 GitHub Actions 工作流
+- 🎯 TypeScript 支持
 
 # customer-search-form-table(Rslib project)
 
@@ -82,7 +84,14 @@ Search—table：[API](./src/SearchTable/docs/api.md) | [中文API](./src/Search
 
 # 未来计划更新
 
-- SearchForm中select的options支持远程搜索或者通过接口返回data（需要开启filterSearch）[in Beta版]
 - 将更多form中的组件加入SearchFormItem
-- 开发SearchTable联动SearchForm，tableData通过自定义getch接口返回
 - 现有只支持antd（v5.x.x）,后续将加入Material-UI、Element for React、React Bootstrap、Blueprint UI、Semantic UI React等...
+
+## 参与贡献
+
+> [!NOTE]
+> 非常欢迎任何对开源组件的贡献！
+
+## 交流
+
+📖 📖 📖 欢迎大家加我的wx（zy-zy625）交流组件、探讨前端

@@ -4,6 +4,8 @@
 [English](README.md) | [简体中文](README_ZH.md)
 
 - 📦 Build using [rslib](https://github.com/web-infra-dev/rslib)
+- 🔄 GitHub Actions workflow
+- 🎯 TypeScript support
 
 # customer-search-form-table(Rslib project)
 
@@ -82,7 +84,14 @@ Search—table：[API](./src/SearchTable/docs/api.md) | [中文API](./src/Search
 
 # Future plan update
 
-- The options of select in SearchForm supports remote search or returning data through an interface（Needs to be turned on filterSearch）[in Beta Version]
 - Add more components from the form to SearchFormItem
-- Develop SearchTable to be linked with SearchForm, and tableData is returned through a custom getch interface
 - Currently, only antd (v5.x.x) is supported. Subsequently, Material-UI, Element for React, React Bootstrap, Blueprint UI, Semantic UI React, etc. will be added...
+
+## 参与贡献
+
+> [!NOTE]
+> Any contribution to open-source components is very welcome！
+
+## 交流
+
+📖 📖 📖 Welcome everyone to add me on wx (zy-zy625) to exchange ideas about components and discuss front-end development

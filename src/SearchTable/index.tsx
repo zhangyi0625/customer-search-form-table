@@ -1,0 +1,127 @@
+import React, { memo, useEffect, useState } from 'react';
+import { Spin, Table, TableProps } from 'antd';
+import { TablePaginationConfig } from 'antd/lib';
+import type { SearchTableProps } from './type';
+// import { useDispatch } from 'react-redux'
+// import { setEssentail } from '@/stores/store'
+
+export const SearchTable: React.FC<SearchTableProps> = memo((props) => {
+  console.log('SearchTable', 'SearchTable');
+
+  const {
+    columns,
+    fetchData,
+    searchFilter,
+    rowKey = 'id',
+    isSelection = true,
+    isPagination = true,
+    fetchResultKey = 'data',
+    scroll,
+    totalKey = 'total',
+    selectionParentType = 'checkbox',
+    immediate = false,
+    isCache,
+    onUpdatePagination,
+    onUpdateSelection,
+  } = props;
+
+  // const dispatch = useDispatch()
+
+  const [tableData, setTableData] = useState([]);
+  const [loading, setLoading] = useState<boolean>(false);
+
+  const [selectionType, setSelectionType] = useState<'checkbox' | 'radio'>(
+    'checkbox',
+  );
+
+  const [currentPagination, setCurrentPagination] =
+    useState<TablePaginationConfig>({
+      current: 1,
+      pageSize: 10,
+      total: 0,
+    });
+
+  const loadTableData = async (paginationConfig = currentPagination) => {
+    setLoading(true);
+    try {
+      const response = await fetchData(searchFilter);
+      const resp = response.data[fetchResultKey] ?? response;
+      console.log(resp, 'response', response, paginationConfig);
+      // isCache && dispatch(setEssentail({ value: resp, key: isCache }))
+      setTableData(resp);
+      setCurrentPagination({
+        ...paginationConfig,
+        total: response.data[totalKey],
+      });
+    } catch {
+      setLoading(false);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    if (!immediate) {
+      loadTableData();
+    }
+    setSelectionType(selectionParentType ?? selectionType);
+  }, [
+    currentPagination.pageSize,
+    currentPagination.pageSizeOptions,
+    searchFilter,
+    immediate,
+    selectionParentType,
+  ]);
+
+  const handleTableChange = (pagination: TablePaginationConfig) => {
+    // if (isPagination) {
+    setCurrentPagination({
+      ...currentPagination,
+      current: pagination.current,
+      pageSize: pagination.pageSize,
+    });
+    onUpdatePagination(pagination);
+    // }
+  };
+
+  const rowSelection: TableProps['rowSelection'] = {
+    onChange: (selectedRowKeys: React.Key[], selectedRows: any) => {
+      console.log(
+        `selectedRowKeys: ${selectedRowKeys}`,
+        'selectedRows: ',
+        selectedRows,
+      );
+      if (onUpdateSelection && isSelection)
+        onUpdateSelection(
+          selectedRows.map((item: any) => item[rowKey as string]),
+          selectedRows,
+        );
+    },
+    getCheckboxProps: (record: any) => ({
+      disabled: record.name === 'Disabled User', // Column configuration not to be checked
+      name: record.name,
+    }),
+  };
+
+  return (
+    <Spin spinning={loading}>
+      <Table
+        {...props}
+        columns={columns}
+        dataSource={tableData}
+        pagination={currentPagination}
+        onChange={handleTableChange}
+        rowKey={rowKey}
+        scroll={scroll}
+        rowSelection={
+          isSelection
+            ? {
+                type: selectionType,
+                ...rowSelection,
+              }
+            : undefined
+        }
+      />
+    </Spin>
+  );
+});

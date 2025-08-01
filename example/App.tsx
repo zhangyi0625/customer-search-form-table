@@ -1,18 +1,36 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { SearchForm } from '../src/index';
+import { SearchTable } from '../src/index';
 import axios from 'axios';
+import { Button, Space, TableProps } from 'antd';
+import { formatTime } from '../src/utils/format';
 
 const getLocation = () => {
   return axios.get('/api/common/carrier/brand/list', {});
 };
 
 const App = () => {
+  const [immediate, setImmediate] = useState<boolean>(false);
+
+  const [selected, setSelected] = useState<string[]>([]);
+
+  const getCabinManageListByPage = () => {
+    return axios.get('/api/customer/frt/order/page', {
+      headers: {
+        authorization: 'Bearer 721f250ef87742b29373a0b0ac26bb65',
+      },
+      params: {
+        ...searchDefaultForm,
+      },
+    });
+  };
   const handleClick = () => {
     console.log('handleClick');
     columns.map((item) => {
       if (item.formType === 'normalSelect') item.hiddenItem = true;
     });
     setColumns([...columns]);
+    setImmediate(false);
   };
 
   const onUpdateSearch = (info) => {
@@ -189,15 +207,107 @@ const App = () => {
 
   const [columns, setColumns] = useState(column);
 
-  //   GITHUB_TOKEN: secrets.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
-  // NPM_TOKEN: secrets.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
+  const tableColumns: TableProps['columns'] = [
+    {
+      title: '船公司',
+      key: 'carrier',
+      dataIndex: 'carrier',
+      align: 'center',
+    },
+    {
+      title: '起运港',
+      key: 'porCode',
+      align: 'center',
+      render(value) {
+        return <div>{value.porCode}</div>;
+      },
+    },
+    {
+      title: '目的港',
+      key: 'fndCode',
+      align: 'center',
+      render(value) {
+        return <div>{value.fndCode}</div>;
+      },
+    },
+    {
+      title: '船司航线',
+      key: 'carrierRoute',
+      align: 'center',
+      render(value) {
+        return <div>{value.carrierRoute}</div>;
+      },
+    },
+    {
+      title: '细分航线',
+      key: 'routeName',
+      align: 'center',
+      render(value) {
+        return <div>{value.routeName}</div>;
+      },
+    },
+    {
+      title: 'ETD',
+      key: 'etd',
+      align: 'center',
+      render(value) {
+        return <div>{formatTime(value.etd, 'Y-M-D')}</div>;
+      },
+    },
+    {
+      title: '放舱时间',
+      key: 'cabinTime',
+      align: 'center',
+      render(value) {
+        return <div>{value.cabinTime}</div>;
+      },
+    },
+    {
+      title: '操作',
+      width: '8%',
+      dataIndex: 'action',
+      fixed: 'right',
+      align: 'center',
+      render(_, record) {
+        return (
+          <Space>
+            <Button
+              type="default"
+              onClick={() => setOperationLog({ visible: true, id: record.id })}
+            >
+              操作日志
+            </Button>
+          </Space>
+        );
+      },
+    },
+  ];
+
+  const setOperationLog = ({}) => {};
+
+  const [searchDefaultForm, setSearchDefaultForm] = useState({
+    pageIndex: 1,
+    pageSize: 10,
+  });
+
+  const onUpdatePagination = (pagination: any) => {
+    setSearchDefaultForm({
+      ...searchDefaultForm,
+      pageIndex: pagination.current as number,
+      pageSize: pagination.pageSize as number,
+    });
+  };
+
+  useEffect(() => {
+    console.log('useEffect');
+  }, [immediate]);
 
   return (
     <>
       <div className="">Hellop World</div>
       <div onClick={() => handleClick()}>测试button</div>
       <SearchForm
-        columns={columns}
+        columns={column}
         gutterWidth={24}
         labelPosition="left"
         showRow={2}
@@ -206,7 +316,24 @@ const App = () => {
         isShowExpend={true}
         iconHidden={true}
         searchBtnText="查询"
+        advancedFilterText={['收起', '展开']}
         onUpdateSearch={onUpdateSearch}
+      />
+      <div style={{ margin: '20px 0' }}></div>
+      <SearchTable
+        columns={tableColumns}
+        size="middle"
+        bordered
+        rowKey="id"
+        immediate={immediate}
+        totalKey="total"
+        fetchData={getCabinManageListByPage}
+        searchFilter={searchDefaultForm}
+        fetchResultKey="entries"
+        isSelection={false}
+        isPagination={true}
+        onUpdatePagination={onUpdatePagination}
+        onUpdateSelection={(options: string[]) => setSelected(options)}
       />
     </>
   );

@@ -30,6 +30,7 @@ export const SearchForm: React.FC<SearchFormPorps> = memo((props) => {
     searchBtnText,
     resetBtnText,
     iconHidden = false,
+    advancedFilterText = ['Collapse', 'Expend'],
     onUpdateSearch,
   } = props;
 
@@ -38,6 +39,10 @@ export const SearchForm: React.FC<SearchFormPorps> = memo((props) => {
   const [isExpend, setIsExpend] = useState<boolean>(false);
 
   const [searchColumns, setSerachColumns] = useState<CustomColumn[]>(columns);
+
+  const [advancedFilter, setAdvancedFilter] = useState<string>(
+    advancedFilterText[0],
+  );
 
   const onFinish = () => {
     // onUpdateSearch(value);
@@ -122,6 +127,15 @@ export const SearchForm: React.FC<SearchFormPorps> = memo((props) => {
       : isExpend && showRow && index + 1 > showRow * 4;
   };
 
+  const changeShowExpend = () => {
+    setIsExpend(!isExpend);
+    setAdvancedFilter(
+      advancedFilter === advancedFilterText[0]
+        ? advancedFilterText[1]
+        : advancedFilterText[0],
+    );
+  };
+
   return (
     <div className={'search-form'}>
       <Form
@@ -162,12 +176,9 @@ export const SearchForm: React.FC<SearchFormPorps> = memo((props) => {
                   </Button>
                 )}
                 {isShowExpend && (
-                  <a
-                    style={{ fontSize: '12px' }}
-                    onClick={() => setIsExpend(!isExpend)}
-                  >
-                    <DownOutlined rotate={isExpend ? 180 : 0} />
-                    Collapse
+                  <a style={{ fontSize: '12px' }} onClick={changeShowExpend}>
+                    <DownOutlined rotate={!isExpend ? 180 : 0} />
+                    {advancedFilter}
                   </a>
                 )}
               </Space>
@@ -196,12 +207,9 @@ export const SearchForm: React.FC<SearchFormPorps> = memo((props) => {
               </Button>
             )}
             {isShowExpend && (
-              <a
-                style={{ fontSize: '12px' }}
-                onClick={() => setIsExpend(!isExpend)}
-              >
-                <DownOutlined rotate={isExpend ? 180 : 0} />
-                Collapse
+              <a style={{ fontSize: '12px' }} onClick={changeShowExpend}>
+                <DownOutlined rotate={!isExpend ? 180 : 0} />
+                {advancedFilter}
               </a>
             )}
           </Space>

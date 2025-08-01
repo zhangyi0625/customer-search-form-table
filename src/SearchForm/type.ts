@@ -40,8 +40,10 @@ export interface CustomColumn extends FormItemType {
 export type SearchFormPorps = {
   /** Row */
   gutterWidth: number;
-  /** 是否显示展开、收缩（Collapse） */
+  /** 是否显示展开(Expend)、收起（Collapse） */
   isShowExpend: boolean;
+  /** 搜索条件展开、收起文字（高级筛选） */
+  advancedFilterText?: string[];
   /** 展开伸缩至多展示几行 */
   showRow?: number;
   /** form columns */

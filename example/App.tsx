@@ -195,6 +195,15 @@ const App = () => {
       span: 6,
     },
     {
+      label: null,
+      name: 'customPlaceholder',
+      customPlaceholder: '自定义组件的提示语:customPlaceholder',
+      formType: 'input',
+      span: 6,
+      hiddenItem: false,
+      selectFetch: false,
+    },
+    {
       label: 'date',
       name: 'create',
       formType: 'date-picker',

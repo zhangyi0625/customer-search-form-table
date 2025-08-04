@@ -1,4 +1,4 @@
-import { memo, useState } from 'react';
+import { memo, useMemo, useState } from 'react';
 import {
   Form,
   Select,
@@ -47,6 +47,7 @@ const SearchFormItem: React.FC<CustomColumn> = memo((props) => {
     options,
     isRules,
     selectFileldName,
+    customPlaceholder,
   } = props;
 
   const { RangePicker } = DatePicker;
@@ -81,6 +82,12 @@ const SearchFormItem: React.FC<CustomColumn> = memo((props) => {
     setFocusSelectLoading(false);
     // }, 1000);
   };
+
+  const getPlaceholderBack = useMemo(() => {
+    return !label && customPlaceholder
+      ? customPlaceholder
+      : `请${formType === 'input' ? '输入' : '选择'}${label}`;
+  }, [label, customPlaceholder]);
 
   const selectOptions = () => {
     return (defalueOptions || []).map((item) =>
@@ -120,6 +127,7 @@ const SearchFormItem: React.FC<CustomColumn> = memo((props) => {
     <div className={'search-form-item'}>
       <Form.Item
         label={label}
+        noStyle={!label ? true : false}
         name={name}
         rules={
           isRules
@@ -139,7 +147,7 @@ const SearchFormItem: React.FC<CustomColumn> = memo((props) => {
             autoFocus={false}
             allowClear
             autoComplete="off"
-            placeholder={`请输入${label}`}
+            placeholder={getPlaceholderBack}
           />
         )}
         {/* {formType === 'select' && (
@@ -163,7 +171,7 @@ const SearchFormItem: React.FC<CustomColumn> = memo((props) => {
         {formType === 'focusSelect' && (
           <Select
             allowClear
-            placeholder={`请选择${label}`}
+            placeholder={getPlaceholderBack}
             showSearch
             defaultActiveFirstOption={false}
             filterOption={(input, option) =>
@@ -192,7 +200,7 @@ const SearchFormItem: React.FC<CustomColumn> = memo((props) => {
         {formType === 'normalSelect' && (
           <Select
             allowClear
-            placeholder={`请选择${label}`}
+            placeholder={getPlaceholderBack}
             showSearch
             options={options}
             filterOption={(input, option) =>
@@ -211,7 +219,7 @@ const SearchFormItem: React.FC<CustomColumn> = memo((props) => {
         {formType === 'cascader' && (
           <Cascader
             options={options}
-            placeholder={`请输入${label}`}
+            placeholder={getPlaceholderBack}
             showSearch={{ filter }}
             allowClear
             fieldNames={

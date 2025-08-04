@@ -25,7 +25,6 @@ const App = () => {
     });
   };
   const handleClick = () => {
-    console.log('handleClick');
     columns.map((item) => {
       if (item.formType === 'normalSelect') item.hiddenItem = true;
     });
@@ -34,10 +33,7 @@ const App = () => {
   };
 
   const onUpdateSearch = (info) => {
-    console.log('onUpdateSearch', info);
-    // setImmediate(true);
     setSearchDefaultForm({ ...searchDefaultForm });
-    // setImmediate(false);
   };
 
   const column = [
@@ -218,28 +214,40 @@ const App = () => {
       align: 'center',
     },
     {
+      title: '订单号',
+      key: 'orderNo',
+      dataIndex: 'orderNo',
+      align: 'center',
+    },
+    {
       title: '起运港',
-      key: 'porCode',
+      key: 'por',
       align: 'center',
       render(value) {
-        return <div>{value.porCode}</div>;
+        return (
+          <div>
+            {value.por.localName}-{value.por.name}
+          </div>
+        );
       },
     },
     {
       title: '目的港',
-      key: 'fndCode',
+      key: 'fnd',
       align: 'center',
       render(value) {
-        return <div>{value.fndCode}</div>;
+        return (
+          <div>
+            {value.fnd.localName}-{value.fnd.name}
+          </div>
+        );
       },
     },
     {
-      title: '船司航线',
-      key: 'carrierRoute',
+      title: '公司名称',
+      key: 'affiliateName',
+      dataIndex: 'affiliateName',
       align: 'center',
-      render(value) {
-        return <div>{value.carrierRoute}</div>;
-      },
     },
     {
       title: '细分航线',
@@ -301,9 +309,7 @@ const App = () => {
     });
   };
 
-  useEffect(() => {
-    console.log('useEffect');
-  }, [immediate]);
+  useEffect(() => {}, [immediate]);
 
   return (
     <>
@@ -334,6 +340,7 @@ const App = () => {
           rowKey="id"
           immediate={immediate}
           totalKey="total"
+          scroll={{ x: 'max-content', y: 358 }}
           fetchData={getCabinManageListByPage}
           searchFilter={searchDefaultForm}
           fetchResultKey="entries"

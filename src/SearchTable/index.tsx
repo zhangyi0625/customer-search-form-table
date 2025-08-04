@@ -6,8 +6,6 @@ import type { SearchTableProps } from './type';
 // import { setEssentail } from '@/stores/store'
 
 export const SearchTable: React.FC<SearchTableProps> = memo((props) => {
-  console.log('SearchTable', 'SearchTable');
-
   const {
     columns,
     fetchData,
@@ -16,7 +14,6 @@ export const SearchTable: React.FC<SearchTableProps> = memo((props) => {
     isSelection = true,
     isPagination = true,
     fetchResultKey = 'data',
-    scroll,
     totalKey = 'total',
     selectionParentType = 'checkbox',
     immediate = false,
@@ -48,7 +45,7 @@ export const SearchTable: React.FC<SearchTableProps> = memo((props) => {
     try {
       const response = await fetchData(searchFilter);
       const resp = response.data[fetchResultKey] ?? response;
-      console.log(resp, 'response', response, paginationConfig);
+      console.log(resp, 'response', response, paginationConfig, isPagination);
       // isCache && dispatch(setEssentail({ value: resp, key: isCache }))
       setTableData(resp);
       setCurrentPagination({
@@ -77,24 +74,17 @@ export const SearchTable: React.FC<SearchTableProps> = memo((props) => {
   ]);
 
   const handleTableChange = (pagination: TablePaginationConfig) => {
-    // if (isPagination) {
     setCurrentPagination({
       ...currentPagination,
       current: pagination.current,
       pageSize: pagination.pageSize,
     });
     onUpdatePagination(pagination);
-    // }
   };
 
   const rowSelection: TableProps['rowSelection'] = {
     selectedRowKeys,
     onChange: (selectedRowKeys: React.Key[], selectedRows: any) => {
-      console.log(
-        `selectedRowKeys: ${selectedRowKeys}`,
-        'selectedRows: ',
-        selectedRows,
-      );
       if (onUpdateSelection && isSelection) {
         onUpdateSelection(
           selectedRows.map((item: any) => item[rowKey as string]),
@@ -117,10 +107,8 @@ export const SearchTable: React.FC<SearchTableProps> = memo((props) => {
         {...props}
         columns={columns}
         dataSource={tableData}
-        pagination={currentPagination}
+        pagination={isPagination && currentPagination}
         onChange={handleTableChange}
-        rowKey={rowKey}
-        scroll={scroll}
         rowSelection={
           isSelection
             ? {

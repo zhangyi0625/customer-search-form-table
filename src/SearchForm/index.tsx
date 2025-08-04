@@ -31,6 +31,7 @@ export const SearchForm: React.FC<SearchFormPorps> = memo((props) => {
     resetBtnText,
     iconHidden = false,
     advancedFilterText = ['Collapse', 'Expend'],
+    defaultFormItemLayout = formItemLayout,
     onUpdateSearch,
   } = props;
 
@@ -140,7 +141,7 @@ export const SearchForm: React.FC<SearchFormPorps> = memo((props) => {
     <div className={'search-form'}>
       <Form
         onFinish={onFinish}
-        {...formItemLayout}
+        {...defaultFormItemLayout}
         colon={false}
         labelAlign={labelPosition}
         form={searchForm}

@@ -52,6 +52,11 @@ export type SearchFormPorps = {
   btnSeparate: boolean;
   /** labelPosition */
   labelPosition: FormProps['labelAlign'];
+  /** label标签布局以及控件布局 */
+  defaultFormItemLayout?: {
+    labelCol: FormItemProps['labelCol'];
+    wrapperCol: FormItemProps['wrapperCol'];
+  };
   /** 是否展示重置按钮（搜索按钮必须存在） */
   isShowReset: boolean;
   /** 搜索自定义文字 默认搜索 */

@@ -311,6 +311,17 @@ const App = () => {
 
   useEffect(() => {}, [immediate]);
 
+  const formItemLayout = {
+    labelCol: {
+      xs: { span: 24 },
+      sm: { span: 5 },
+    },
+    wrapperCol: {
+      xs: { span: 24 },
+      sm: { span: 19 },
+    },
+  };
+
   return (
     <>
       <div className="">Hellop World</div>
@@ -322,6 +333,7 @@ const App = () => {
           gutterWidth={24}
           labelPosition="left"
           showRow={2}
+          defaultFormItemLayout={formItemLayout}
           btnSeparate={false}
           isShowReset={true}
           isShowExpend={true}

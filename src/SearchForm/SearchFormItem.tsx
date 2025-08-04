@@ -127,7 +127,6 @@ const SearchFormItem: React.FC<CustomColumn> = memo((props) => {
     <div className={'search-form-item'}>
       <Form.Item
         label={label}
-        noStyle={!label ? true : false}
         name={name}
         rules={
           isRules
@@ -141,6 +140,8 @@ const SearchFormItem: React.FC<CustomColumn> = memo((props) => {
               ]
             : undefined
         }
+        labelCol={!label ? { sm: { span: 0 } } : undefined}
+        wrapperCol={!label ? { sm: { span: 24 } } : undefined}
       >
         {formType === 'input' && (
           <Input
@@ -199,6 +200,7 @@ const SearchFormItem: React.FC<CustomColumn> = memo((props) => {
         )}
         {formType === 'normalSelect' && (
           <Select
+            style={{ width: '100%' }}
             allowClear
             placeholder={getPlaceholderBack}
             showSearch
@@ -232,7 +234,7 @@ const SearchFormItem: React.FC<CustomColumn> = memo((props) => {
           />
         )}
         {formType === 'date-picker' && (
-          <RangePicker format={'YY-MM-DD HH:mm:ss'} />
+          <RangePicker style={{ width: '100%' }} format={'YY-MM-DD HH:mm:ss'} />
         )}
       </Form.Item>
     </div>

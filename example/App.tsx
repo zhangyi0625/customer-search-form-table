@@ -331,6 +331,68 @@ const App = () => {
     },
   };
 
+  const exampleColumns = [
+    {
+      label: null,
+      name: 'enabled',
+      formType: 'normalSelect',
+      customPlaceholder: '请选择目标客户',
+      options: [
+        {
+          label: '全部客户',
+          value: 'null',
+        },
+        {
+          label: '1',
+          value: 1,
+        },
+        {
+          label: '2',
+          value: 0,
+        },
+      ],
+      defaultValue: 'null',
+      span: 8,
+      selectFetch: false,
+      hiddenItem: false,
+    },
+    {
+      label: null,
+      name: 'project',
+      customPlaceholder: '请输入项目编号或项目名称',
+      formType: 'input',
+      span: 8,
+      selectFetch: false,
+      hiddenItem: false,
+    },
+    {
+      label: null,
+      name: 'name',
+      customPlaceholder: '请输入客户名称或手机号',
+      formType: 'input',
+      span: 8,
+      selectFetch: false,
+      hiddenItem: false,
+    },
+    {
+      label: null,
+      name: 'customer',
+      customPlaceholder: '业务员',
+      formType: 'input',
+      span: 8,
+      selectFetch: false,
+      hiddenItem: false,
+    },
+    {
+      label: null,
+      name: 'create',
+      formType: 'date-picker',
+      span: 8,
+      hiddenItem: false,
+      selectFetch: false,
+    },
+  ];
+
   return (
     <>
       <div className="">Hellop World</div>
@@ -348,7 +410,32 @@ const App = () => {
           isShowExpend={true}
           iconHidden={true}
           searchBtnText="查询"
-          advancedFilterText={['收起', '展开']}
+          advancedFilterText={['展开', '收起']}
+          onUpdateSearch={onUpdateSearch}
+        />
+      </Card>
+      <Card>
+        <SearchForm
+          columns={exampleColumns}
+          gutterWidth={24}
+          labelPosition="left"
+          showRow={1}
+          defaultFormItemLayout={{
+            labelCol: {
+              xs: { span: 24 },
+              sm: { span: 0 },
+            },
+            wrapperCol: {
+              xs: { span: 24 },
+              sm: { span: 24 },
+            },
+          }}
+          btnSeparate={false}
+          isShowReset={true}
+          isShowExpend={true}
+          iconHidden={true}
+          searchBtnText="查询"
+          advancedFilterText={['展开', '收起']}
           onUpdateSearch={onUpdateSearch}
         />
       </Card>

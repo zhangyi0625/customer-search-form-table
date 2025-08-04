@@ -30,14 +30,14 @@ export const SearchForm: React.FC<SearchFormPorps> = memo((props) => {
     searchBtnText,
     resetBtnText,
     iconHidden = false,
-    advancedFilterText = ['Collapse', 'Expend'],
+    advancedFilterText = ['Expend', 'Collapse'],
     defaultFormItemLayout = formItemLayout,
     onUpdateSearch,
   } = props;
 
   const [searchForm] = Form.useForm();
 
-  const [isExpend, setIsExpend] = useState<boolean>(false);
+  const [isExpend, setIsExpend] = useState<boolean>(true);
 
   const [searchColumns, setSerachColumns] = useState<CustomColumn[]>(columns);
 

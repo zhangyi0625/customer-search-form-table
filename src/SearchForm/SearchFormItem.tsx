@@ -7,11 +7,17 @@ import {
   Cascader,
   GetProp,
   CascaderProps,
+  ConfigProvider,
 } from 'antd';
 import { SelectProps } from 'antd/lib';
+import locale from 'antd/locale/zh_CN';
+import dayjs from 'dayjs';
+import 'dayjs/locale/zh-cn';
 import { debounce } from 'lodash-es';
 import type { CustomColumn } from './type';
 import axios from 'axios';
+
+dayjs.locale('zh-cn');
 
 type fetchValueType = Pick<
   CustomColumn,
@@ -234,7 +240,12 @@ const SearchFormItem: React.FC<CustomColumn> = memo((props) => {
           />
         )}
         {formType === 'date-picker' && (
-          <RangePicker style={{ width: '100%' }} format={'YY-MM-DD HH:mm:ss'} />
+          <ConfigProvider locale={locale}>
+            <RangePicker
+              style={{ width: '100%' }}
+              format={'YY-MM-DD HH:mm:ss'}
+            />
+          </ConfigProvider>
         )}
       </Form.Item>
     </div>

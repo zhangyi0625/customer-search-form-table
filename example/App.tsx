@@ -33,7 +33,9 @@ const App = () => {
   };
 
   const onUpdateSearch = (info) => {
-    setSearchDefaultForm({ ...searchDefaultForm });
+    console.log(info, 'info');
+
+    // setSearchDefaultForm({ ...searchDefaultForm });
   };
 
   const column = [
@@ -397,8 +399,7 @@ const App = () => {
     <>
       <div className="">Hellop World</div>
       <div onClick={() => handleClick()}>测试button</div>
-      <div style={{ margin: '20px 0' }}></div>
-      <Card>
+      <Card style={{ margin: '20px 0' }}>
         <SearchForm
           columns={column}
           gutterWidth={24}
@@ -414,7 +415,7 @@ const App = () => {
           onUpdateSearch={onUpdateSearch}
         />
       </Card>
-      <Card>
+      <Card style={{ margin: '20px 0' }}>
         <SearchForm
           columns={exampleColumns}
           gutterWidth={24}
@@ -439,8 +440,7 @@ const App = () => {
           onUpdateSearch={onUpdateSearch}
         />
       </Card>
-      <div style={{ margin: '20px 0' }}></div>
-      <Card>
+      <Card style={{ margin: '20px 0' }}>
         <SearchTable
           columns={tableColumns}
           size="middle"

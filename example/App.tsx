@@ -354,7 +354,7 @@ const App = () => {
         },
       ],
       defaultValue: 'null',
-      span: 8,
+      span: 6,
       selectFetch: false,
       hiddenItem: false,
     },
@@ -363,7 +363,7 @@ const App = () => {
       name: 'project',
       customPlaceholder: '请输入项目编号或项目名称',
       formType: 'input',
-      span: 8,
+      span: 6,
       selectFetch: false,
       hiddenItem: false,
     },
@@ -372,7 +372,7 @@ const App = () => {
       name: 'name',
       customPlaceholder: '请输入客户名称或手机号',
       formType: 'input',
-      span: 8,
+      span: 6,
       selectFetch: false,
       hiddenItem: false,
     },
@@ -381,7 +381,7 @@ const App = () => {
       name: 'customer',
       customPlaceholder: '业务员',
       formType: 'input',
-      span: 8,
+      span: 6,
       selectFetch: false,
       hiddenItem: false,
     },
@@ -389,7 +389,7 @@ const App = () => {
       label: null,
       name: 'create',
       formType: 'date-picker',
-      span: 8,
+      span: 6,
       hiddenItem: false,
       selectFetch: false,
     },
@@ -404,8 +404,17 @@ const App = () => {
           columns={column}
           gutterWidth={24}
           labelPosition="left"
-          showRow={2}
-          defaultFormItemLayout={formItemLayout}
+          showRow={1}
+          defaultFormItemLayout={{
+            labelCol: {
+              xs: { span: 24 },
+              sm: { span: 0 },
+            },
+            wrapperCol: {
+              xs: { span: 24 },
+              sm: { span: 24 },
+            },
+          }}
           btnSeparate={false}
           isShowReset={true}
           isShowExpend={true}
@@ -441,6 +450,10 @@ const App = () => {
         />
       </Card>
       <Card style={{ margin: '20px 0' }}>
+        <div
+          style={{ background: '#fafafa' }}
+          className="h-[54px] leading-[54px] w-full mt-[8px] flex items-center px-[12px]"
+        ></div>
         <SearchTable
           columns={tableColumns}
           size="middle"

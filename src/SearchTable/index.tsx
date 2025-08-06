@@ -1,3 +1,4 @@
+import './index.scss';
 import React, { memo, useEffect, useState } from 'react';
 import { Spin, Table, TableProps } from 'antd';
 import { TablePaginationConfig } from 'antd/lib';

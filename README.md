@@ -1,4 +1,13 @@
+# customer-search-form-table(Rslib project)
+
 <div align="center">
+
+![issue](https://img.shields.io/github/issues-search?query=https%3A%2F%2Fgithub.com%2Fzhangyi0625%2Fcustomer-search-form-table%2Fissues 'issue')
+![npm](https://img.shields.io/npm/v/customer-search-form-table 'npm')
+
+</div>
+
+<div align="left">
 </div>
 
 [English](README.md) | [简体中文](README_ZH.md)
@@ -6,8 +15,6 @@
 - 📦 Build using [rslib](https://github.com/web-infra-dev/rslib)
 - 🔄 GitHub Actions workflow
 - 🎯 TypeScript support
-
-# customer-search-form-table(Rslib project)
 
 ![alt text](./src/assets/example.png)
 

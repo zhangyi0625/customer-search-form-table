@@ -2,6 +2,7 @@
 
 <div align="center">
 
+![downloads](https://img.shields.io/npm/dw/customer-search-form-table 'downloads')
 ![issue](https://img.shields.io/github/issues-search?query=https%3A%2F%2Fgithub.com%2Fzhangyi0625%2Fcustomer-search-form-table%2Fissues 'issue')
 ![npm](https://img.shields.io/npm/v/customer-search-form-table 'npm')
 

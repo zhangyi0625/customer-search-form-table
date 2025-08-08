@@ -46,12 +46,8 @@ export const SearchTable: React.FC<SearchTableProps> = memo((props) => {
     setLoading(true);
     try {
       const response = await fetchData(searchFilter);
-      const data =
-        response.data.data && !isArray(response.data.data)
-          ? response.data.data
-          : response.data;
+      const data = response.data ? response.data : response;
       const resp = data[fetchResultKey];
-      console.log(resp, 'response', response, paginationConfig, isPagination);
       // isCache && dispatch(setEssentail({ value: resp, key: isCache }))
       setTableData(resp);
       setCurrentPagination({

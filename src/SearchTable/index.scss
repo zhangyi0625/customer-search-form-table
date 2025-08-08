@@ -1,1 +1,17 @@
+.ant-table-container {
+}
 
+.hidden-table-radius {
+  .ant-table-container {
+    border-radius: unset !important;
+  }
+  .ant-table-header {
+    border-radius: unset !important;
+    .ant-table-selection-column {
+      border-radius: unset !important;
+    }
+    .ant-table-cell-fix-right {
+      border-radius: unset !important;
+    }
+  }
+}

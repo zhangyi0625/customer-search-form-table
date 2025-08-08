@@ -14,6 +14,7 @@
 | selectionParentType | 表格勾选类型                                               |        string         | checkbox、radio | checkbox |
 | immediate           | 是否立马加载表格数据（针对部分业务逻辑需要）               |        boolean        | true、false     |  false   |
 | isCache             | 缓存部分基数数据 (暂时用于react-redux,对应缓存数据的key值) |        string         | -               |    -     |
+| showTableRadius     | 是否隐藏表格顶部圆角                                       |        boolean        | true、false     |  false   |
 
 注：更多继承TableProps属性，请参考 Antd UI[Table组件的文档](https://ant-design.antgroup.com/components/table-cn)。
 

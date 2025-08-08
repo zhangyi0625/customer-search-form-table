@@ -20,6 +20,7 @@ export const SearchTable: React.FC<SearchTableProps> = memo((props) => {
     selectionParentType = 'checkbox',
     immediate = false,
     isCache,
+    showTableRadius = false,
     onUpdatePagination,
     onUpdateSelection,
   } = props;
@@ -106,6 +107,7 @@ export const SearchTable: React.FC<SearchTableProps> = memo((props) => {
   return (
     <Spin spinning={loading}>
       <Table
+        className={showTableRadius ? 'hidden-table-radius' : ''}
         {...props}
         columns={columns}
         dataSource={tableData}

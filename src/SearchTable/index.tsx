@@ -3,6 +3,7 @@ import React, { memo, useEffect, useState } from 'react';
 import { Spin, Table, TableProps } from 'antd';
 import { TablePaginationConfig } from 'antd/lib';
 import type { SearchTableProps } from './type';
+import { isArray } from 'lodash-es';
 // import { useDispatch } from 'react-redux'
 // import { setEssentail } from '@/stores/store'
 
@@ -45,13 +46,17 @@ export const SearchTable: React.FC<SearchTableProps> = memo((props) => {
     setLoading(true);
     try {
       const response = await fetchData(searchFilter);
-      const resp = response.data[fetchResultKey] ?? response;
+      const data =
+        response.data.data && !isArray(response.data.data)
+          ? response.data.data
+          : response.data;
+      const resp = data[fetchResultKey];
       console.log(resp, 'response', response, paginationConfig, isPagination);
       // isCache && dispatch(setEssentail({ value: resp, key: isCache }))
       setTableData(resp);
       setCurrentPagination({
         ...paginationConfig,
-        total: response.data[totalKey],
+        total: data[totalKey],
       });
       setSelectedRowKeys([]);
     } catch {

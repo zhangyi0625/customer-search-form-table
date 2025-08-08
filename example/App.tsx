@@ -17,7 +17,7 @@ const App = () => {
   const getCabinManageListByPage = () => {
     return axios.get('/api/customer/frt/order/page', {
       headers: {
-        authorization: 'Bearer 721f250ef87742b29373a0b0ac26bb65',
+        authorization: 'Bearer 21d33c0f4b964cedb0823936dec99a74',
       },
       params: {
         ...searchDefaultForm,

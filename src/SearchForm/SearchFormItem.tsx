@@ -129,6 +129,13 @@ const SearchFormItem: React.FC<CustomColumn> = memo((props) => {
           .indexOf(inputValue.toLowerCase()) > -1,
     );
 
+  const getFilterOption = (input: string, option: any) => {
+    let key = selectFileldName ? selectFileldName['label'] : 'label';
+    return String(option[key as string] ?? '')
+      .toLowerCase()
+      .includes(input.toLowerCase());
+  };
+
   return (
     <div className={'search-form-item'}>
       <Form.Item
@@ -211,11 +218,7 @@ const SearchFormItem: React.FC<CustomColumn> = memo((props) => {
             placeholder={getPlaceholderBack}
             showSearch
             options={options}
-            filterOption={(input, option) =>
-              String(option?.label ?? '')
-                .toLowerCase()
-                .includes(input.toLowerCase())
-            }
+            filterOption={getFilterOption}
             fieldNames={
               selectFileldName ?? {
                 label: 'label',

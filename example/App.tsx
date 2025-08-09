@@ -360,6 +360,37 @@ const App = () => {
     },
     {
       label: null,
+      name: 'testselect',
+      formType: 'normalSelect',
+      customPlaceholder: '请选择',
+      options: [
+        {
+          name: '全部客户',
+          id: 'null',
+        },
+        {
+          name: '1',
+          id: 1 * 1,
+        },
+        {
+          name: '2',
+          id: 2 * 2,
+        },
+        {
+          name: '54',
+          id: 54 * 54,
+        },
+      ],
+      selectFileldName: {
+        label: 'name',
+        value: 'id',
+      },
+      span: 6,
+      selectFetch: false,
+      hiddenItem: false,
+    },
+    {
+      label: null,
       name: 'project',
       customPlaceholder: '请输入项目编号或项目名称',
       formType: 'input',

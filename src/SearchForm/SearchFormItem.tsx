@@ -28,19 +28,6 @@ type fetchValueType = Pick<
 
 type DefaultOptionType = GetProp<CascaderProps, 'options'>[number];
 
-const fetchSearch = debounce(
-  (value: fetchValueType, callback: (data: any) => void) => {
-    (axios as any)
-      [
-        value.apiByUrlMethod ?? 'get'
-      ](value.apiByUrl, value.apiByUrlMethod === 'get' ? { params: value.apiByUrlParams } : value.apiByUrlParams)
-      .then((res: any) => {
-        callback(res[value.selectResultKey ?? 'data']);
-      });
-  },
-  300,
-);
-
 const SearchFormItem: React.FC<CustomColumn> = memo((props) => {
   const {
     label,
@@ -49,12 +36,27 @@ const SearchFormItem: React.FC<CustomColumn> = memo((props) => {
     apiByUrl,
     apiByUrlMethod,
     apiByUrlParams,
+    apiByUrlHeaders,
     selectResultKey,
     options,
     isRules,
     selectFileldName,
     customPlaceholder,
   } = props;
+
+  const fetchSearch = debounce(
+    (value: fetchValueType, callback: (data: any) => void) => {
+      console.log(apiByUrlHeaders, 'apiByUrlHeaders');
+      (axios as any)
+        [
+          value.apiByUrlMethod ?? 'get'
+        ](value.apiByUrl, value.apiByUrlMethod === 'get' ? { params: value.apiByUrlParams, headers: apiByUrlHeaders } : value.apiByUrlParams)
+        .then((res: any) => {
+          callback(res[value.selectResultKey ?? 'data']);
+        });
+    },
+    300,
+  );
 
   const { RangePicker } = DatePicker;
 

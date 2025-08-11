@@ -144,6 +144,10 @@ const App = () => {
         tag: 'POR',
         keyword: null,
       },
+      apiByUrlHeaders: {
+        authorization: 'Bearer ' + sessionStorage.getItem('token'),
+        'Content-Type': 'application/json',
+      },
       selectFileldName: {
         label: 'localName',
         value: 'unlocode',

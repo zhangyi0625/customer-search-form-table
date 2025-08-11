@@ -27,6 +27,8 @@ export interface CustomColumn extends FormItemType {
   apiByUrlMethod?: 'get' | 'post' | string;
   /** 接口地址需要传的参数，该属性配合apiByUrl使用 */
   apiByUrlParams?: object;
+  /** 接口地址需要的请求头信息，该属性配合apiByUrl使用 */
+  apiByUrlHeaders?: object;
   // Todo : form表单rules 暂时只支持基础空置校验
   isRules?: boolean;
   // 设置formItem初始值

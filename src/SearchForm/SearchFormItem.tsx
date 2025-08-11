@@ -13,7 +13,7 @@ import { SelectProps } from 'antd/lib';
 import locale from 'antd/locale/zh_CN';
 import dayjs from 'dayjs';
 import 'dayjs/locale/zh-cn';
-import { debounce } from 'lodash-es';
+import { debounce, isArray } from 'lodash-es';
 import type { CustomColumn } from './type';
 import axios from 'axios';
 
@@ -27,6 +27,12 @@ type fetchValueType = Pick<
 };
 
 type DefaultOptionType = GetProp<CascaderProps, 'options'>[number];
+
+type SpecResponse = {
+  code: number;
+  data: any[];
+  message: string;
+};
 
 const SearchFormItem: React.FC<CustomColumn> = memo((props) => {
   const {
@@ -61,8 +67,11 @@ const SearchFormItem: React.FC<CustomColumn> = memo((props) => {
       [
         value.apiByUrlMethod ?? 'get'
       ](value.apiByUrl, value.apiByUrlMethod === 'get' ? { params: params, headers: apiByUrlHeaders } : value.apiByUrlParams)
-      .then((res: any) => {
-        callback(res[value.selectResultKey ?? 'data']);
+      .then((res: { data: any[] | SpecResponse }) => {
+        let data = isArray(res.data)
+          ? res.data
+          : (res.data as any)[value.selectResultKey ?? 'data'];
+        callback(data);
       });
   };
 
@@ -109,8 +118,7 @@ const SearchFormItem: React.FC<CustomColumn> = memo((props) => {
   }, [label, customPlaceholder]);
 
   const selectOptions = () => {
-    console.log(defalueOptions, 'defalueOptions', name);
-
+    // console.log(defalueOptions, 'defalueOptions', name);
     return (defalueOptions || []).map((item) =>
       portNameOptions.includes(name)
         ? {

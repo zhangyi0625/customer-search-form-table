@@ -29,6 +29,8 @@ export interface CustomColumn extends FormItemType {
   apiByUrlParams?: object;
   /** 接口地址需要的请求头信息，该属性配合apiByUrl使用 */
   apiByUrlHeaders?: object;
+  /** 远程搜索关键字 配合接口传参属性（注：该属性值必须存在apiByUrlParams中，设置后会把select组件的filterOption设置为false），该属性配合apiByUrl使用 */
+  setSearchKey?: string;
   // Todo : form表单rules 暂时只支持基础空置校验
   isRules?: boolean;
   // 设置formItem初始值

@@ -37,6 +37,7 @@ const SearchFormItem: React.FC<CustomColumn> = memo((props) => {
     apiByUrlMethod,
     apiByUrlParams,
     apiByUrlHeaders,
+    setSearchKey = null,
     selectResultKey,
     options,
     isRules,
@@ -44,19 +45,26 @@ const SearchFormItem: React.FC<CustomColumn> = memo((props) => {
     customPlaceholder,
   } = props;
 
-  const fetchSearch = debounce(
-    (value: fetchValueType, callback: (data: any) => void) => {
-      console.log(apiByUrlHeaders, 'apiByUrlHeaders');
-      (axios as any)
-        [
-          value.apiByUrlMethod ?? 'get'
-        ](value.apiByUrl, value.apiByUrlMethod === 'get' ? { params: value.apiByUrlParams, headers: apiByUrlHeaders } : value.apiByUrlParams)
-        .then((res: any) => {
-          callback(res[value.selectResultKey ?? 'data']);
-        });
-    },
-    300,
-  );
+  const fetchSearch = (
+    value: fetchValueType,
+    search = false,
+    callback: (data: any) => void,
+  ) => {
+    let params =
+      setSearchKey && search
+        ? {
+            ...apiByUrlParams,
+            [setSearchKey]: value.value,
+          }
+        : apiByUrlParams;
+    (axios as any)
+      [
+        value.apiByUrlMethod ?? 'get'
+      ](value.apiByUrl, value.apiByUrlMethod === 'get' ? { params: params, headers: apiByUrlHeaders } : value.apiByUrlParams)
+      .then((res: any) => {
+        callback(res[value.selectResultKey ?? 'data']);
+      });
+  };
 
   const { RangePicker } = DatePicker;
 
@@ -67,15 +75,20 @@ const SearchFormItem: React.FC<CustomColumn> = memo((props) => {
 
   const [focusSelectLoading, setFocusSelectLoading] = useState<boolean>(false);
 
-  const handleSearch = (
-    newVal: string,
-    params: Pick<
-      CustomColumn,
-      'apiByUrl' | 'apiByUrlMethod' | 'apiByUrlParams' | 'selectResultKey'
-    >,
-  ) => {
-    // fetchSearch({ value: newVal, ...params }, setDefaultOptions);
-  };
+  const handleSearch = debounce(
+    (
+      newVal: string,
+      params: Pick<
+        CustomColumn,
+        'apiByUrl' | 'apiByUrlMethod' | 'apiByUrlParams' | 'selectResultKey'
+      >,
+    ) => {
+      setFocusSelectLoading(true);
+      fetchSearch({ value: newVal, ...params }, true, setDefaultOptions);
+      setFocusSelectLoading(false);
+    },
+    300,
+  );
 
   const selectFoucs = (
     name: string,
@@ -85,10 +98,8 @@ const SearchFormItem: React.FC<CustomColumn> = memo((props) => {
     >,
   ) => {
     setFocusSelectLoading(true);
-    fetchSearch({ value: null, name: name, ...params }, setDefaultOptions);
-    // setTimeout(() => {
+    fetchSearch({ value: null, ...params }, false, setDefaultOptions);
     setFocusSelectLoading(false);
-    // }, 1000);
   };
 
   const getPlaceholderBack = useMemo(() => {
@@ -98,6 +109,8 @@ const SearchFormItem: React.FC<CustomColumn> = memo((props) => {
   }, [label, customPlaceholder]);
 
   const selectOptions = () => {
+    console.log(defalueOptions, 'defalueOptions', name);
+
     return (defalueOptions || []).map((item) =>
       portNameOptions.includes(name)
         ? {
@@ -190,10 +203,21 @@ const SearchFormItem: React.FC<CustomColumn> = memo((props) => {
             placeholder={getPlaceholderBack}
             showSearch
             defaultActiveFirstOption={false}
-            filterOption={(input, option) =>
-              String(option?.label ?? '')
-                .toLowerCase()
-                .includes(input.toLowerCase())
+            filterOption={
+              setSearchKey
+                ? false
+                : (input, option) =>
+                    String(option?.label ?? '')
+                      .toLowerCase()
+                      .includes(input.toLowerCase())
+            }
+            onSearch={(value: string) =>
+              handleSearch(value, {
+                apiByUrl,
+                apiByUrlMethod,
+                apiByUrlParams,
+                selectResultKey,
+              })
             }
             loading={focusSelectLoading}
             onFocus={() =>

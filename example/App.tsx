@@ -144,6 +144,7 @@ const App = () => {
         tag: 'POR',
         keyword: null,
       },
+      setSearchKey: 'keyword',
       apiByUrlHeaders: {
         authorization: 'Bearer ' + sessionStorage.getItem('token'),
         'Content-Type': 'application/json',

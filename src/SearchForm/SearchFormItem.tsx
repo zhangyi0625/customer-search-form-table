@@ -34,6 +34,8 @@ type SpecResponse = {
   message: string;
 };
 
+const { RangePicker } = DatePicker;
+
 const SearchFormItem: React.FC<CustomColumn> = memo((props) => {
   const {
     label,
@@ -74,8 +76,6 @@ const SearchFormItem: React.FC<CustomColumn> = memo((props) => {
         callback(data);
       });
   };
-
-  const { RangePicker } = DatePicker;
 
   const portNameOptions = ['porCode', 'fndCode', 'porId', 'fndId'];
 
@@ -160,34 +160,35 @@ const SearchFormItem: React.FC<CustomColumn> = memo((props) => {
   };
 
   return (
-    <div className={'search-form-item'}>
-      <Form.Item
-        label={label}
-        name={name}
-        rules={
-          isRules
-            ? [
-                {
-                  required: true,
-                  message: `请${
-                    formType === 'input' ? '输入' : '选择'
-                  }${label}`,
-                },
-              ]
-            : undefined
-        }
-        labelCol={!label ? { sm: { span: 0 } } : undefined}
-        wrapperCol={!label ? { sm: { span: 24 } } : undefined}
-      >
-        {formType === 'input' && (
-          <Input
-            autoFocus={false}
-            allowClear
-            autoComplete="off"
-            placeholder={getPlaceholderBack}
-          />
-        )}
-        {/* {formType === 'select' && (
+    <ConfigProvider locale={locale}>
+      <div className={'search-form-item'}>
+        <Form.Item
+          label={label}
+          name={name}
+          rules={
+            isRules
+              ? [
+                  {
+                    required: true,
+                    message: `请${
+                      formType === 'input' ? '输入' : '选择'
+                    }${label}`,
+                  },
+                ]
+              : undefined
+          }
+          labelCol={!label ? { sm: { span: 0 } } : undefined}
+          wrapperCol={!label ? { sm: { span: 24 } } : undefined}
+        >
+          {formType === 'input' && (
+            <Input
+              autoFocus={false}
+              allowClear
+              autoComplete="off"
+              placeholder={getPlaceholderBack}
+            />
+          )}
+          {/* {formType === 'select' && (
           <Select
             allowClear
             placeholder={`请输入${label}`}
@@ -205,87 +206,88 @@ const SearchFormItem: React.FC<CustomColumn> = memo((props) => {
             options={selectOptions()}
           />
         )} */}
-        {formType === 'focusSelect' && (
-          <Select
-            allowClear
-            placeholder={getPlaceholderBack}
-            showSearch
-            defaultActiveFirstOption={false}
-            filterOption={
-              setSearchKey
-                ? false
-                : (input, option) =>
-                    String(option?.label ?? '')
-                      .toLowerCase()
-                      .includes(input.toLowerCase())
-            }
-            onSearch={(value: string) =>
-              handleSearch(value, {
-                apiByUrl,
-                apiByUrlMethod,
-                apiByUrlParams,
-                selectResultKey,
-              })
-            }
-            loading={focusSelectLoading}
-            onFocus={() =>
-              selectFoucs(name, {
-                apiByUrl,
-                apiByUrlMethod,
-                apiByUrlParams,
-                selectResultKey,
-              })
-            }
-            popupMatchSelectWidth={portNameOptions.includes(name) ? 240 : true}
-            classNames={{
-              popup: {
-                root: 'portSelect',
-              },
-            }}
-            options={selectOptions()}
-          />
-        )}
-        {formType === 'normalSelect' && (
-          <Select
-            style={{ width: '100%' }}
-            allowClear
-            placeholder={getPlaceholderBack}
-            showSearch
-            options={options}
-            filterOption={getFilterOption}
-            fieldNames={
-              selectFileldName ?? {
-                label: 'label',
-                value: 'value',
+          {formType === 'focusSelect' && (
+            <Select
+              allowClear
+              placeholder={getPlaceholderBack}
+              showSearch
+              defaultActiveFirstOption={false}
+              filterOption={
+                setSearchKey
+                  ? false
+                  : (input, option) =>
+                      String(option?.label ?? '')
+                        .toLowerCase()
+                        .includes(input.toLowerCase())
               }
-            }
-          />
-        )}
-        {formType === 'cascader' && (
-          <Cascader
-            options={options}
-            placeholder={getPlaceholderBack}
-            showSearch={{ filter }}
-            allowClear
-            fieldNames={
-              selectFileldName ?? {
-                label: 'label',
-                value: 'value',
-                children: 'children',
+              onSearch={(value: string) =>
+                handleSearch(value, {
+                  apiByUrl,
+                  apiByUrlMethod,
+                  apiByUrlParams,
+                  selectResultKey,
+                })
               }
-            }
-          />
-        )}
-        {formType === 'date-picker' && (
-          <ConfigProvider locale={locale}>
+              loading={focusSelectLoading}
+              onFocus={() =>
+                selectFoucs(name, {
+                  apiByUrl,
+                  apiByUrlMethod,
+                  apiByUrlParams,
+                  selectResultKey,
+                })
+              }
+              popupMatchSelectWidth={
+                portNameOptions.includes(name) ? 240 : true
+              }
+              classNames={{
+                popup: {
+                  root: 'portSelect',
+                },
+              }}
+              options={selectOptions()}
+            />
+          )}
+          {formType === 'normalSelect' && (
+            <Select
+              style={{ width: '100%' }}
+              allowClear
+              placeholder={getPlaceholderBack}
+              showSearch
+              options={options}
+              filterOption={getFilterOption}
+              fieldNames={
+                selectFileldName ?? {
+                  label: 'label',
+                  value: 'value',
+                }
+              }
+            />
+          )}
+          {formType === 'cascader' && (
+            <Cascader
+              options={options}
+              placeholder={getPlaceholderBack}
+              showSearch={{ filter }}
+              allowClear
+              fieldNames={
+                selectFileldName ?? {
+                  label: 'label',
+                  value: 'value',
+                  children: 'children',
+                }
+              }
+            />
+          )}
+          {formType === 'date-picker' && (
             <RangePicker
               style={{ width: '100%' }}
               format={'YY-MM-DD HH:mm:ss'}
             />
-          </ConfigProvider>
-        )}
-      </Form.Item>
-    </div>
+          )}
+        </Form.Item>
+      </div>
+    </ConfigProvider>
   );
 });
 

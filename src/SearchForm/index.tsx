@@ -72,7 +72,11 @@ export const SearchForm: React.FC<SearchFormPorps> = memo((props) => {
           item.selectFileldName,
           item.selectResultKey,
         );
-      if (item.name && item.defaultValue) {
+      if (
+        item.name &&
+        item.defaultValue !== null &&
+        item.defaultValue !== undefined
+      ) {
         searchForm.resetFields();
         searchForm.setFieldsValue({ [item.name]: item.defaultValue });
       }
@@ -94,6 +98,7 @@ export const SearchForm: React.FC<SearchFormPorps> = memo((props) => {
         nameKey.push(item.name);
       }
     });
+
     if (nameKey.length === 0) {
       params = {
         ...searchForm.getFieldsValue(),

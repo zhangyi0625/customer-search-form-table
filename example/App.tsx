@@ -347,7 +347,7 @@ const App = () => {
       options: [
         {
           label: '全部客户',
-          value: 'null',
+          value: '',
         },
         {
           label: '1',
@@ -358,7 +358,7 @@ const App = () => {
           value: 0,
         },
       ],
-      defaultValue: 'null',
+      defaultValue: '',
       span: 6,
       selectFetch: false,
       hiddenItem: false,
@@ -424,6 +424,14 @@ const App = () => {
     {
       label: null,
       name: 'create',
+      formType: 'date-picker',
+      span: 6,
+      hiddenItem: false,
+      selectFetch: false,
+    },
+    {
+      label: 'date',
+      name: 'createTime',
       formType: 'date-picker',
       span: 6,
       hiddenItem: false,

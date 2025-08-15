@@ -113,7 +113,7 @@ export const SearchForm: React.FC<SearchFormPorps> = memo((props) => {
             'Y-M-D h:m:s',
           ),
           [`${item}End`]: formatTime(
-            searchForm.getFieldsValue()[item][0],
+            searchForm.getFieldsValue()[item][1],
             'Y-M-D h:m:s',
           ),
         };

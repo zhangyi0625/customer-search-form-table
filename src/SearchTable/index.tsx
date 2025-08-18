@@ -21,6 +21,7 @@ export const SearchTable: React.FC<SearchTableProps> = memo((props) => {
     immediate = false,
     isCache,
     showTableRadius = false,
+    multipleSelected = [],
     onUpdatePagination,
     onUpdateSelection,
   } = props;
@@ -34,7 +35,9 @@ export const SearchTable: React.FC<SearchTableProps> = memo((props) => {
     'checkbox',
   );
 
-  const [selectedRowKeys, setSelectedRowKeys] = useState<string[]>([]);
+  const [selectedRowKeys, setSelectedRowKeys] = useState<string[] | number[]>(
+    [],
+  );
 
   const [currentPagination, setCurrentPagination] =
     useState<TablePaginationConfig>({
@@ -48,14 +51,14 @@ export const SearchTable: React.FC<SearchTableProps> = memo((props) => {
     try {
       const response = await fetchData(searchFilter);
       const data = response.data ? response.data : response;
-      const resp = data[fetchResultKey];
+      const resp = data[fetchResultKey] ?? data;
       // isCache && dispatch(setEssentail({ value: resp, key: isCache }))
       setTableData(resp);
       setCurrentPagination({
         ...paginationConfig,
         total: data[totalKey],
       });
-      setSelectedRowKeys([]);
+      setSelectedRowKeys(multipleSelected.length ? multipleSelected : []);
     } catch {
       setLoading(false);
     } finally {

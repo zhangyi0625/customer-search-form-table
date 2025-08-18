@@ -12,12 +12,12 @@ const getLocation = () => {
 const App = () => {
   const [immediate, setImmediate] = useState<boolean>(false);
 
-  const [selected, setSelected] = useState<string[]>([]);
+  const [selected, setSelected] = useState<string[] | number[]>([]);
 
   const getCabinManageListByPage = () => {
     return axios.get('/api/customer/frt/order/page', {
       headers: {
-        authorization: 'Bearer 21d33c0f4b964cedb0823936dec99a74',
+        authorization: 'Bearer 95c5bc360ee8457eb4afb97701187ab0',
       },
       params: {
         ...searchDefaultForm,
@@ -33,9 +33,9 @@ const App = () => {
   };
 
   const onUpdateSearch = (info) => {
-    console.log(info, 'info');
-
-    // setSearchDefaultForm({ ...searchDefaultForm });
+    setSearchDefaultForm({ ...searchDefaultForm });
+    setSelected([1097]);
+    console.log(info, 'info', selected);
   };
 
   const column = [
@@ -509,10 +509,14 @@ const App = () => {
           fetchData={getCabinManageListByPage}
           searchFilter={searchDefaultForm}
           fetchResultKey="entries"
+          multipleSelected={selected ?? []}
           isSelection={true}
+          selectionParentType="radio"
           isPagination={true}
           onUpdatePagination={onUpdatePagination}
-          onUpdateSelection={(options: string[]) => setSelected(options)}
+          onUpdateSelection={(options: string[] | number[]) =>
+            setSelected(options)
+          }
         />
       </Card>
     </>

@@ -17,7 +17,7 @@ const App = () => {
   const getCabinManageListByPage = () => {
     return axios.get('/api/customer/frt/order/page', {
       headers: {
-        authorization: 'Bearer 95c5bc360ee8457eb4afb97701187ab0',
+        authorization: 'Bearer 7a3876868cc34eecb61ffe90d83813e8',
       },
       params: {
         ...searchDefaultForm,
@@ -40,7 +40,7 @@ const App = () => {
 
   const column = [
     {
-      label: '测试',
+      label: 'test-input',
       name: 'test',
       formType: 'input',
       span: 6,
@@ -48,24 +48,8 @@ const App = () => {
       selectFetch: false,
     },
     {
-      label: '测试1',
-      name: 'test1',
-      formType: 'input',
-      span: 6,
-      hiddenItem: false,
-      selectFetch: false,
-    },
-    {
-      label: '测试2',
+      label: 'test-select',
       name: 'test2',
-      formType: 'input',
-      span: 6,
-      hiddenItem: false,
-      selectFetch: false,
-    },
-    {
-      label: '测试3',
-      name: 'test3',
       formType: 'normalSelect',
       options: [],
       span: 6,
@@ -73,7 +57,7 @@ const App = () => {
       selectFetch: false,
     },
     {
-      label: '测试4',
+      label: 'selectFetch',
       name: 'test4',
       formType: 'normalSelect',
       options: [],
@@ -133,7 +117,7 @@ const App = () => {
       hiddenItem: false,
     },
     {
-      label: 'porCode',
+      label: 'focusSelect',
       name: 'porCode',
       formType: 'focusSelect',
       options: [],
@@ -441,24 +425,16 @@ const App = () => {
 
   return (
     <>
-      <div className="">Hellop World</div>
-      <div onClick={() => handleClick()}>测试button</div>
+      <div className="" onClick={() => handleClick()}>
+        Rslib templte
+      </div>
       <Card style={{ margin: '20px 0' }}>
+        <h2>SearchForm template</h2>
         <SearchForm
           columns={column}
           gutterWidth={24}
           labelPosition="left"
           showRow={1}
-          defaultFormItemLayout={{
-            labelCol: {
-              xs: { span: 24 },
-              sm: { span: 0 },
-            },
-            wrapperCol: {
-              xs: { span: 24 },
-              sm: { span: 24 },
-            },
-          }}
           btnSeparate={false}
           isShowReset={true}
           isShowExpend={true}
@@ -469,6 +445,7 @@ const App = () => {
         />
       </Card>
       <Card style={{ margin: '20px 0' }}>
+        <h2>SearchForm template</h2>
         <SearchForm
           columns={exampleColumns}
           gutterWidth={24}
@@ -494,10 +471,7 @@ const App = () => {
         />
       </Card>
       <Card style={{ margin: '20px 0' }}>
-        <div
-          style={{ background: '#fafafa' }}
-          className="h-[54px] leading-[54px] w-full mt-[8px] flex items-center px-[12px]"
-        ></div>
+        <h2>SearchTable template</h2>
         <SearchTable
           columns={tableColumns}
           size="middle"

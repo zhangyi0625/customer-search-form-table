@@ -9,6 +9,53 @@ const getLocation = () => {
   return axios.get('/api/common/carrier/brand/list', {});
 };
 
+interface CascaderType {
+  value: string;
+  label: string;
+  children?: CascaderType[];
+  disabled?: boolean;
+}
+
+const cascaderOptions: CascaderType[] = [
+  {
+    value: 'zhejiang',
+    label: 'Zhejiang',
+    children: [
+      {
+        value: 'hangzhou',
+        label: 'Hangzhou',
+        children: [
+          {
+            value: 'xihu',
+            label: 'West Lake',
+          },
+          {
+            value: 'xiasha',
+            label: 'Xia Sha',
+            disabled: true,
+          },
+        ],
+      },
+    ],
+  },
+  {
+    value: 'jiangsu',
+    label: 'Jiangsu',
+    children: [
+      {
+        value: 'nanjing',
+        label: 'Nanjing',
+        children: [
+          {
+            value: 'zhonghuamen',
+            label: 'Zhong Hua men',
+          },
+        ],
+      },
+    ],
+  },
+];
+
 const App = () => {
   const [immediate, setImmediate] = useState<boolean>(false);
 
@@ -182,6 +229,15 @@ const App = () => {
         label: 'routeName',
         value: 'id',
       },
+      hiddenItem: false,
+      span: 6,
+    },
+    {
+      label: 'cascader',
+      name: 'cascader',
+      formType: 'cascader',
+      options: cascaderOptions,
+      selectFetch: false,
       hiddenItem: false,
       span: 6,
     },

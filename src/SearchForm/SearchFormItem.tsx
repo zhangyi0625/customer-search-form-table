@@ -147,7 +147,7 @@ const SearchFormItem: React.FC<CustomColumn> = memo((props) => {
   const filter = (inputValue: string, path: DefaultOptionType[]) =>
     path.some(
       (option) =>
-        (option.text as string)
+        (option.label as string)
           .toLowerCase()
           .indexOf(inputValue.toLowerCase()) > -1,
     );
@@ -264,6 +264,7 @@ const SearchFormItem: React.FC<CustomColumn> = memo((props) => {
               }
             />
           )}
+          {/* 暂不支持服务端搜索，更多信息见 https://github.com/ant-design/ant-design/issues/5547 */}
           {formType === 'cascader' && (
             <Cascader
               options={options}

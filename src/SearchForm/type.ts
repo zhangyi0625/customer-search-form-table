@@ -40,7 +40,7 @@ export interface CustomColumn extends FormItemType {
   /** 是否显示formItem 用于tab切换时存在不同的查询表头 */
   hiddenItem: boolean;
   /** 自定义组件的提示语（推荐在formItem中label为null时设置） */
-  customPlaceholder?: string | null;
+  customPlaceholder?: string | null | string[];
 }
 
 export type SearchFormPorps = {

@@ -185,7 +185,7 @@ const SearchFormItem: React.FC<CustomColumn> = memo((props) => {
               autoFocus={false}
               allowClear
               autoComplete="off"
-              placeholder={getPlaceholderBack}
+              placeholder={getPlaceholderBack as string}
             />
           )}
           {/* {formType === 'select' && (
@@ -284,6 +284,12 @@ const SearchFormItem: React.FC<CustomColumn> = memo((props) => {
             <RangePicker
               style={{ width: '100%' }}
               format={'YY-MM-DD HH:mm:ss'}
+              placeholder={
+                Array.isArray(customPlaceholder) &&
+                customPlaceholder.length === 2
+                  ? (customPlaceholder as [string, string])
+                  : undefined
+              }
             />
           )}
         </Form.Item>

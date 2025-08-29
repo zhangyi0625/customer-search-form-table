@@ -468,6 +468,7 @@ const App = () => {
       span: 6,
       hiddenItem: false,
       selectFetch: false,
+      customPlaceholder: ['创建开始日期', '创建结束日期'],
     },
     {
       label: 'date',

@@ -11,6 +11,7 @@ import {
 } from 'antd';
 import { SelectProps } from 'antd/lib';
 import locale from 'antd/locale/zh_CN';
+import enUS from 'antd/locale/en_US';
 import dayjs from 'dayjs';
 import 'dayjs/locale/zh-cn';
 import { debounce, isArray } from 'lodash-es';

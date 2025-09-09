@@ -110,7 +110,9 @@ export const SearchTable: React.FC<SearchTableProps> = memo((props) => {
   return (
     <Spin spinning={loading}>
       <Table
-        className={showTableRadius ? 'hidden-table-radius' : ''}
+        className={
+          showTableRadius ? 'hidden-table-radius search-table' : 'search-table'
+        }
         {...props}
         columns={columns}
         dataSource={tableData}

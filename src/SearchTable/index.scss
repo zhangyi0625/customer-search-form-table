@@ -1,6 +1,3 @@
-.ant-table-container {
-}
-
 .hidden-table-radius {
   .ant-table-container {
     border-radius: unset !important;
@@ -13,5 +10,20 @@
     .ant-table-cell-fix-right {
       border-radius: unset !important;
     }
+  }
+}
+.search-table {
+  .odd {
+    background-color: #fff;
+  }
+  .even {
+    background-color: rgba(250, 250, 250, 1);
+  }
+  .ant-table-body .ant-table-row-hover {
+    background: transparent !important;
+  }
+
+  .ant-table-body .ant-table-row-hover > td {
+    background: transparent !important;
   }
 }

@@ -64,7 +64,7 @@ const App = () => {
   const getCabinManageListByPage = () => {
     return axios.get('/api/customer/frt/order/page', {
       headers: {
-        authorization: 'Bearer 7a3876868cc34eecb61ffe90d83813e8',
+        authorization: 'Bearer 7a736faae7184bd09aca50260002e352',
       },
       params: {
         ...searchDefaultForm,
@@ -537,6 +537,7 @@ const App = () => {
           immediate={immediate}
           totalKey="total"
           scroll={{ x: 'max-content', y: 358 }}
+          rowClassName={(record, index) => (index % 2 === 1 ? 'even' : 'odd')}
           fetchData={getCabinManageListByPage}
           searchFilter={searchDefaultForm}
           fetchResultKey="entries"

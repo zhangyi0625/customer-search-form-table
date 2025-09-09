@@ -19,7 +19,7 @@
 
 ![alt text](./src/assets/example.png)
 
-## Technology Stack
+## 技术栈
 
 1. React: v19.x.x [React](https://reactjs.org/)
 2. Antd: v5.x.x [Ant Design](https://ant.design/index-cn)
@@ -80,11 +80,11 @@ Search-form：[API](./src/SearchForm/docs/api.md) | [中文API](./src/SearchForm
 
 Search—table：[API](./src/SearchTable/docs/api.md) | [中文API](./src/SearchTable/docs/api_ZH.md)
 
-## Documentation
+## 文档
 
 后续会上.
 
-## Development
+## 发展
 
 ```bash
   1. git clone https://github.com/zhangyi0625/customer-search-form-table.git

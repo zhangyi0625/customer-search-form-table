@@ -1,6 +1,7 @@
 import { pluginReact } from '@rsbuild/plugin-react';
 import { pluginSass } from '@rsbuild/plugin-sass';
 import { pluginMdx } from '@rsbuild/plugin-mdx';
+import { pluginPublint } from 'rsbuild-plugin-publint';
 import { defineConfig } from '@rslib/core';
 
 export default defineConfig({
@@ -19,5 +20,5 @@ export default defineConfig({
   output: {
     target: 'web',
   },
-  plugins: [pluginReact(), pluginSass(), pluginMdx()],
+  plugins: [pluginReact(), pluginSass(), pluginMdx(), pluginPublint()],
 });

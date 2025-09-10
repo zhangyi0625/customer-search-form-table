@@ -3,7 +3,6 @@ import React, { memo, useEffect, useState } from 'react';
 import { Empty, Spin, Table, TableProps } from 'antd';
 import { TablePaginationConfig } from 'antd/lib';
 import type { SearchTableProps } from './type';
-import { isArray } from 'lodash-es';
 // import { useDispatch } from 'react-redux'
 // import { setEssentail } from '@/stores/store'
 

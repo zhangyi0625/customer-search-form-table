@@ -1,6 +1,6 @@
 import './index.scss';
 import React, { memo, useEffect, useState } from 'react';
-import { Spin, Table, TableProps } from 'antd';
+import { Empty, Spin, Table, TableProps } from 'antd';
 import { TablePaginationConfig } from 'antd/lib';
 import type { SearchTableProps } from './type';
 import { isArray } from 'lodash-es';
@@ -39,6 +39,8 @@ export const SearchTable: React.FC<SearchTableProps> = memo((props) => {
     [],
   );
 
+  const [tableEmptyText, setTableEmptyText] = useState<string>('暂无数据');
+
   const [currentPagination, setCurrentPagination] =
     useState<TablePaginationConfig>({
       current: 1,
@@ -50,8 +52,24 @@ export const SearchTable: React.FC<SearchTableProps> = memo((props) => {
     setLoading(true);
     try {
       const response = await fetchData(searchFilter);
+      if (
+        response.data &&
+        response.data.code &&
+        response.data.code == 500 &&
+        response.data.error
+      ) {
+        setTableEmptyText('操作异常，详情查看接口报错error');
+        setTableData([]);
+        setCurrentPagination({
+          ...paginationConfig,
+          total: 0,
+        });
+        setSelectedRowKeys(multipleSelected.length ? multipleSelected : []);
+        return;
+      }
       const data = response.data ? response.data : response;
       const resp = data[fetchResultKey] ?? data;
+
       // isCache && dispatch(setEssentail({ value: resp, key: isCache }))
       setTableData(resp);
       setCurrentPagination({
@@ -126,6 +144,14 @@ export const SearchTable: React.FC<SearchTableProps> = memo((props) => {
               }
             : undefined
         }
+        locale={{
+          emptyText: (
+            <Empty
+              image={Empty.PRESENTED_IMAGE_SIMPLE}
+              description={tableEmptyText ?? ''}
+            ></Empty>
+          ),
+        }}
       />
     </Spin>
   );

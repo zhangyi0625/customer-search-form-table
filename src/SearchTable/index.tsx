@@ -3,8 +3,6 @@ import React, { memo, useEffect, useState } from 'react';
 import { Empty, Spin, Table, TableProps } from 'antd';
 import { TablePaginationConfig } from 'antd/lib';
 import type { SearchTableProps } from './type';
-// import { useDispatch } from 'react-redux'
-// import { setEssentail } from '@/stores/store'
 
 export const SearchTable: React.FC<SearchTableProps> = memo((props) => {
   const {
@@ -19,7 +17,6 @@ export const SearchTable: React.FC<SearchTableProps> = memo((props) => {
     selectionParentType = 'checkbox',
     immediate = false,
     isCache,
-    showTableRadius = false,
     multipleSelected = [],
     onUpdatePagination,
     onUpdateSelection,
@@ -69,7 +66,8 @@ export const SearchTable: React.FC<SearchTableProps> = memo((props) => {
       const data = response.data ? response.data : response;
       const resp = data[fetchResultKey] ?? data;
 
-      // isCache && dispatch(setEssentail({ value: resp, key: isCache }))
+      console.log(props, 'props');
+
       setTableData(resp);
       setCurrentPagination({
         ...paginationConfig,
@@ -127,9 +125,7 @@ export const SearchTable: React.FC<SearchTableProps> = memo((props) => {
   return (
     <Spin spinning={loading}>
       <Table
-        className={
-          showTableRadius ? 'hidden-table-radius search-table' : 'search-table'
-        }
+        className={'search-table'}
         {...props}
         columns={columns}
         dataSource={tableData}

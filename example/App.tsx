@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { SearchForm } from '../src/index';
 import { SearchTable } from '../src/index';
-import { Button, Card, Space, TableProps } from 'antd';
+import { Button, Card, ConfigProvider, Space, TableProps } from 'antd';
 import { formatTime } from '../src/utils/format';
 
 const getLocation = () => {
@@ -532,27 +532,38 @@ const App = () => {
       </Card>
       <Card style={{ margin: '20px 0' }}>
         <h2>SearchTable template</h2>
-        <SearchTable
-          columns={tableColumns}
-          size="middle"
-          bordered
-          rowKey="id"
-          immediate={immediate}
-          totalKey="total"
-          scroll={{ x: 'max-content', y: 358 }}
-          rowClassName={(record, index) => (index % 2 === 1 ? 'even' : 'odd')}
-          fetchData={getCabinManageListByPage}
-          searchFilter={searchDefaultForm}
-          fetchResultKey="entries"
-          multipleSelected={selected ?? []}
-          isSelection={true}
-          selectionParentType="radio"
-          isPagination={true}
-          onUpdatePagination={onUpdatePagination}
-          onUpdateSelection={(options: string[] | number[]) =>
-            setSelected(options)
-          }
-        />
+        <ConfigProvider
+          theme={{
+            components: {
+              Table: {
+                rowHoverBg: '#f5f7fa',
+                headerBorderRadius: 0,
+              },
+            },
+          }}
+        >
+          <SearchTable
+            columns={tableColumns}
+            size="middle"
+            bordered
+            rowKey="id"
+            immediate={immediate}
+            totalKey="total"
+            scroll={{ x: 'max-content', y: 358 }}
+            rowClassName={(_, index) => (index % 2 === 1 ? 'even' : 'odd')}
+            fetchData={getCabinManageListByPage}
+            searchFilter={searchDefaultForm}
+            fetchResultKey="entries"
+            multipleSelected={selected ?? []}
+            isSelection={true}
+            selectionParentType="radio"
+            isPagination={true}
+            onUpdatePagination={onUpdatePagination}
+            onUpdateSelection={(options: string[] | number[]) =>
+              setSelected(options)
+            }
+          />
+        </ConfigProvider>
       </Card>
     </>
   );

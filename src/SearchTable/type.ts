@@ -22,8 +22,6 @@ export interface SearchTableProps
   immediate?: boolean;
   /** 缓存部分基数数据 (暂时用于react-redux,对应缓存数据的key值) */
   isCache?: string;
-  /** 是否隐藏表格顶部圆角 */
-  showTableRadius?: boolean;
   /** 回显表格勾选数据（rowKey默认为id） */
   multipleSelected?: string[] | number[];
   /** 分页回调函数 */

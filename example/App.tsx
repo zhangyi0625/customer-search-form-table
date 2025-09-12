@@ -308,6 +308,7 @@ const App = () => {
     {
       title: '细分航线',
       key: 'routeName',
+      width: 200,
       align: 'center',
       render(value) {
         return <div>{value.routeName}</div>;
@@ -317,16 +318,18 @@ const App = () => {
       title: 'ETD',
       key: 'etd',
       align: 'center',
+      width: 200,
       render(value) {
-        return <div>{formatTime(value.etd, 'Y-M-D')}</div>;
+        return <div>{formatTime(value.etdEnd, 'Y-M-D')}</div>;
       },
     },
     {
       title: '放舱时间',
       key: 'cabinTime',
       align: 'center',
+      width: 200,
       render(value) {
-        return <div>{value.cabinTime}</div>;
+        return <div>{value.etdEnd}</div>;
       },
     },
     {

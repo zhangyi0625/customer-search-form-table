@@ -18,7 +18,6 @@
 | selectionParentType | Table selection type                                                                                              |        string         | checkbox、radio | checkbox |
 | immediate           | Whether to load the table data immediately (for some business logic requirements)                                 |        boolean        | true、false     |  false   |
 | isCache             | Cache part of the base data (temporarily used for react-redux, corresponding to the key value of the cached data) |        string         | -               |    -     |
-| showTableRadius     | Whether to hide the rounded corners at the top of the table                                                       |        boolean        | true、false     |  false   |
 | multipleSelected    | Echo the table with selected data (rowKey defaults to id)                                                         |  string[]、number[]   | -               |    []    |
 
 Note: more inheritance TableProps property, please refer to the Antd UI Table component documentation (https://ant-design.antgroup.com/components/table-cn).

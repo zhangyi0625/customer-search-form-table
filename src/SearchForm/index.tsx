@@ -88,38 +88,57 @@ export const SearchForm: React.FC<SearchFormPorps> = memo((props) => {
 
   const onSearch = () => {
     // 针对处理时间传值表达式：name + 'Start' || 'End'
-    const nameKey: string[] = [];
+    const filterTypeByTime: { key: string; type: CustomColumn['formType'] }[] =
+      [];
     let params = {};
     searchColumns.map((item) => {
       if (
-        item.formType === 'date-picker' &&
+        (item.formType === 'range-picker' || item.formType === 'date-picker') &&
         searchForm.getFieldValue([item.name])
       ) {
-        nameKey.push(item.name);
+        filterTypeByTime.push({
+          key: item.name,
+          type: item.formType,
+        });
       }
     });
-
-    if (nameKey.length === 0) {
+    if (filterTypeByTime.length === 0) {
       params = {
         ...searchForm.getFieldsValue(),
       };
     } else {
-      nameKey.map((item) => {
+      filterTypeByTime.map((item) => {
         params = {
-          ...filterKeys(searchForm.getFieldsValue(), nameKey, false),
+          ...filterKeys(
+            searchForm.getFieldsValue(),
+            [...filterTypeByTime.map((items) => items.key)],
+            false,
+          ),
           ...params,
-          [`${item}Start`]: formatTime(
-            searchForm.getFieldsValue()[item][0],
-            'Y-M-D h:m:s',
-          ),
-          [`${item}End`]: formatTime(
-            searchForm.getFieldsValue()[item][1],
-            'Y-M-D h:m:s',
-          ),
+          [item.type === 'range-picker' ? `${item.key}Start` : `${item.key}`]:
+            item.type === 'range-picker'
+              ? formatTime(
+                  searchForm.getFieldsValue()[item.key][0],
+                  'Y-M-D h:m:s',
+                )
+              : formatTime(
+                  searchForm.getFieldsValue()[item.key],
+                  'Y-M-D h:m:s',
+                ),
+          [item.type === 'range-picker' ? `${item.key}End` : `${item.key}`]:
+            item.type === 'range-picker'
+              ? formatTime(
+                  searchForm.getFieldsValue()[item.key][1],
+                  'Y-M-D' + ' 23:59:59',
+                )
+              : formatTime(
+                  searchForm.getFieldsValue()[item.key],
+                  'Y-M-D h:m:s',
+                ),
         };
       });
     }
-    console.log(params, 'params');
+    console.log(params, 'params', filterTypeByTime);
 
     onUpdateSearch(params);
   };

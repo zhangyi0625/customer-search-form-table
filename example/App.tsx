@@ -64,7 +64,7 @@ const App = () => {
   const getCabinManageListByPage = () => {
     return axios.get('/api/customer/frt/order/page', {
       headers: {
-        authorization: 'Bearer 7a736faae7184bd09aca50260002e352',
+        authorization: 'Bearer 589d8279f0624197ab649b1e234f9376',
       },
       params: {
         ...searchDefaultForm,
@@ -251,9 +251,18 @@ const App = () => {
       selectFetch: false,
     },
     {
-      label: 'date',
+      label: 'datePicker',
       name: 'create',
       formType: 'date-picker',
+      span: 6,
+      hiddenItem: false,
+      selectFetch: false,
+    },
+    {
+      label: 'rangePicker',
+      name: 'rangePicker',
+      formType: 'range-picker',
+      customPlaceholder: ['开始日期', '结束日期'],
       span: 6,
       hiddenItem: false,
       selectFetch: false,
@@ -465,18 +474,18 @@ const App = () => {
       hiddenItem: false,
     },
     {
-      label: null,
-      name: 'create',
+      label: 'datePicker',
+      name: 'create1',
       formType: 'date-picker',
       span: 6,
       hiddenItem: false,
       selectFetch: false,
-      customPlaceholder: ['创建开始日期', '创建结束日期'],
     },
     {
-      label: 'date',
-      name: 'createTime',
-      formType: 'date-picker',
+      label: 'rangePicker',
+      name: 'rangePicker',
+      formType: 'range-picker',
+      customPlaceholder: ['开始日期', '结束日期'],
       span: 6,
       hiddenItem: false,
       selectFetch: false,

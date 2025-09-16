@@ -281,7 +281,7 @@ const SearchFormItem: React.FC<CustomColumn> = memo((props) => {
               }
             />
           )}
-          {formType === 'date-picker' && (
+          {formType === 'range-picker' && (
             <RangePicker
               style={{ width: '100%' }}
               format={'YY-MM-DD HH:mm:ss'}
@@ -291,6 +291,13 @@ const SearchFormItem: React.FC<CustomColumn> = memo((props) => {
                   ? (customPlaceholder as [string, string])
                   : undefined
               }
+            />
+          )}
+          {formType === 'date-picker' && (
+            <DatePicker
+              style={{ width: '100%' }}
+              format={'YY-MM-DD HH:mm:ss'}
+              placeholder={(customPlaceholder as string) ?? '请选择'}
             />
           )}
         </Form.Item>

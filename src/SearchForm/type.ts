@@ -9,6 +9,7 @@ export interface CustomColumn extends FormItemType {
     | 'normalSelect'
     | 'cascader'
     | 'date-picker'
+    | 'range-picker'
     | 'focusSelect'
     | string;
   /** select || cascader */

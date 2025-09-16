@@ -119,7 +119,6 @@ const SearchFormItem: React.FC<CustomColumn> = memo((props) => {
   }, [label, customPlaceholder]);
 
   const selectOptions = () => {
-    // console.log(defalueOptions, 'defalueOptions', name);
     return (defalueOptions || []).map((item) =>
       portNameOptions.includes(name)
         ? {

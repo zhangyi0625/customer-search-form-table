@@ -82,7 +82,6 @@ const App = () => {
   const onUpdateSearch = (info) => {
     setSearchDefaultForm({ ...searchDefaultForm });
     setSelected([1097]);
-    console.log(info, 'info', selected);
   };
 
   const column = [

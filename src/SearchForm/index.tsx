@@ -138,8 +138,6 @@ export const SearchForm: React.FC<SearchFormPorps> = memo((props) => {
         };
       });
     }
-    console.log(params, 'params', filterTypeByTime);
-
     onUpdateSearch(params);
   };
 

@@ -7,7 +7,7 @@
 | gutterWidth           | 栅格属性Row                                                    |         number          | -           |                                               24                                               |
 | isShowExpend          | 是否显示展开(Expend)、收起（Collapse）                         |         boolean         | true、false |                                             false                                              |
 | advancedFilterText    | 搜索条件展开、收起文字（高级筛选）                             |        string[]         | -           |                                      [ Collapse, Expend ]                                      |
-| showRow               | 展开伸缩至多展示几行                                           |         number          | -           |                                               -                                                |
+| defaultColsNumber     | 自定义折叠状态下默认显示几行控件数量，超出时展示收起/隐藏      |         number          | -           |                                               -                                                |
 | columns               | 表格columns(见下方[**CustomColumn 属性**](#CustomColumn-属性)) |          array          | -           |                                               -                                                |
 | btnSeparate           | 查询重制按钮所在位置 1、在Form中 2、单独一行在右下角           |         boolean         | true、false |                                              true                                              |
 | labelPosition         | label 标签的文本对齐方式                                       | FormProps['labelAlign'] | left、right |                                              left                                              |

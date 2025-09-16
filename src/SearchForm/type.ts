@@ -51,8 +51,8 @@ export type SearchFormPorps = {
   isShowExpend: boolean;
   /** 搜索条件展开、收起文字（高级筛选） */
   advancedFilterText?: string[];
-  /** 展开伸缩至多展示几行 */
-  showRow?: number;
+  /** 自定义折叠状态下默认显示几行控件数量，超出时展示收起/隐藏 */
+  defaultColsNumber?: number;
   /** form columns */
   columns: CustomColumn[];
   /** 查询重制按钮所在位置 1、在Form中 2、单独一行在右下角 */

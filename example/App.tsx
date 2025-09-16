@@ -502,7 +502,7 @@ const App = () => {
           columns={column}
           gutterWidth={24}
           labelPosition="left"
-          showRow={1}
+          defaultColsNumber={2}
           btnSeparate={false}
           isShowReset={true}
           isShowExpend={true}
@@ -518,7 +518,7 @@ const App = () => {
           columns={exampleColumns}
           gutterWidth={24}
           labelPosition="left"
-          showRow={1}
+          defaultColsNumber={1}
           defaultFormItemLayout={{
             labelCol: {
               xs: { span: 24 },

@@ -21,7 +21,7 @@ const formItemLayout = {
 export const SearchForm: React.FC<SearchFormPorps> = memo((props) => {
   const {
     gutterWidth = 24,
-    showRow,
+    defaultColsNumber,
     columns,
     labelPosition = 'left',
     btnSeparate = true,
@@ -148,8 +148,8 @@ export const SearchForm: React.FC<SearchFormPorps> = memo((props) => {
 
   const getColClass = (index: number) => {
     return !btnSeparate
-      ? isExpend && showRow && index + 1 >= showRow * 4
-      : isExpend && showRow && index + 1 > showRow * 4;
+      ? isExpend && defaultColsNumber && index + 1 >= defaultColsNumber * 4
+      : isExpend && defaultColsNumber && index + 1 > defaultColsNumber * 4;
   };
 
   const changeShowExpend = () => {

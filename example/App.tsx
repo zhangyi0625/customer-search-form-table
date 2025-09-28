@@ -64,7 +64,7 @@ const App = () => {
   const getCabinManageListByPage = () => {
     return axios.get('/api/customer/frt/order/page', {
       headers: {
-        authorization: 'Bearer 589d8279f0624197ab649b1e234f9376',
+        authorization: 'Bearer 60273314dff7490b9205c7b011822b24',
       },
       params: {
         ...searchDefaultForm,
@@ -79,8 +79,9 @@ const App = () => {
     setImmediate(false);
   };
 
-  const onUpdateSearch = (info) => {
-    setSearchDefaultForm({ ...searchDefaultForm });
+  const onUpdateSearch = (info: any) => {
+    setSearchDefaultForm({ ...searchDefaultForm, pageIndex: 1, pageSize: 10 });
+    console.log(info, 'info', searchDefaultForm);
     setSelected([1097]);
   };
 

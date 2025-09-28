@@ -18,6 +18,8 @@ export const SearchTable: React.FC<SearchTableProps> = memo((props) => {
     immediate = false,
     isCache,
     multipleSelected = [],
+    pageIndexKey = 'pageIndex',
+    pageSizeKey = 'pageSize',
     onUpdatePagination,
     onUpdateSelection,
   } = props;
@@ -65,12 +67,11 @@ export const SearchTable: React.FC<SearchTableProps> = memo((props) => {
       }
       const data = response.data ? response.data : response;
       const resp = data[fetchResultKey] ?? data;
-
-      console.log(props, 'props');
-
       setTableData(resp);
       setCurrentPagination({
         ...paginationConfig,
+        current: searchFilter[pageIndexKey],
+        pageSize: searchFilter[pageSizeKey],
         total: data[totalKey],
       });
       setSelectedRowKeys(multipleSelected.length ? multipleSelected : []);

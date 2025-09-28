@@ -24,6 +24,10 @@ export interface SearchTableProps
   isCache?: string;
   /** 回显表格勾选数据（rowKey默认为id） */
   multipleSelected?: string[] | number[];
+  /** 页码数 的 key 值 */
+  pageIndexKey?: string;
+  /** 每页展示个数 的 key 值 */
+  pageSizeKey?: string;
   /** 分页回调函数 */
   onUpdatePagination: (pagination: TablePaginationConfig) => void;
   /** 勾选回调函数 */

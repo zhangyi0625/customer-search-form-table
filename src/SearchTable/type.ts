@@ -20,8 +20,6 @@ export interface SearchTableProps
   selectionParentType?: 'checkbox' | 'radio';
   /** 是否立马加载表格数据（针对部分业务逻辑需要） */
   immediate?: boolean;
-  /** 缓存部分基数数据 (暂时用于react-redux,对应缓存数据的key值) */
-  isCache?: string;
   /** 回显表格勾选数据（rowKey默认为id） */
   multipleSelected?: string[] | number[];
   /** 页码数 的 key 值 */

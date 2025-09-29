@@ -16,7 +16,6 @@ export const SearchTable: React.FC<SearchTableProps> = memo((props) => {
     totalKey = 'total',
     selectionParentType = 'checkbox',
     immediate = false,
-    isCache,
     multipleSelected = [],
     pageIndexKey = 'pageIndex',
     pageSizeKey = 'pageSize',

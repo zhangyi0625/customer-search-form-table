@@ -64,7 +64,7 @@ const App = () => {
   const getCabinManageListByPage = () => {
     return axios.get('/api/customer/frt/order/page', {
       headers: {
-        authorization: 'Bearer 60273314dff7490b9205c7b011822b24',
+        authorization: 'Bearer 81f0424cecd24095a2493d97dc3271a9',
       },
       params: {
         ...searchDefaultForm,
@@ -124,22 +124,26 @@ const App = () => {
       formType: 'normalSelect',
       options: [
         {
-          label: '一一一',
-          value: 1,
+          title: '一一一',
+          id: 1,
         },
         {
-          label: '二二二',
-          value: 2,
+          title: '二二二',
+          id: 2,
         },
         {
-          label: '三三三',
-          value: 3,
+          title: '三三三',
+          id: 3,
         },
         {
-          label: '四四四',
-          value: 4,
+          title: '四四四',
+          id: 4,
         },
       ],
+      // selectFileldName: {
+      //   value: 'id',
+      //   label: 'id',
+      // },
       selectFetch: false,
       span: 6,
       hiddenItem: false,

@@ -57,14 +57,16 @@ const cascaderOptions: CascaderType[] = [
 ];
 
 const App = () => {
-  const [immediate, setImmediate] = useState<boolean>(false);
+  const [immediate, setImmediate] = useState<boolean>(true);
+
+  const [tableLoading, setTableLoading] = useState<boolean>(true);
 
   const [selected, setSelected] = useState<string[] | number[]>([]);
 
   const getCabinManageListByPage = () => {
     return axios.get('/api/customer/frt/order/page', {
       headers: {
-        authorization: 'Bearer 81f0424cecd24095a2493d97dc3271a9',
+        authorization: 'Bearer e5f9a648f4d34be48b7097b41c297f55',
       },
       params: {
         ...searchDefaultForm,
@@ -76,12 +78,12 @@ const App = () => {
       if (item.formType === 'normalSelect') item.hiddenItem = true;
     });
     setColumns([...columns]);
-    setImmediate(false);
+    // setImmediate(false);
+    setTableLoading(false);
   };
 
   const onUpdateSearch = (info: any) => {
     setSearchDefaultForm({ ...searchDefaultForm, pageIndex: 1, pageSize: 10 });
-    console.log(info, 'info', searchDefaultForm);
     setSelected([1097]);
   };
 
@@ -381,7 +383,9 @@ const App = () => {
     });
   };
 
-  useEffect(() => {}, [immediate]);
+  useEffect(() => {
+    // setImmediate(false);
+  }, []);
 
   const formItemLayout = {
     labelCol: {
@@ -575,6 +579,22 @@ const App = () => {
             onUpdateSelection={(options: string[] | number[]) =>
               setSelected(options)
             }
+          />
+          <SearchTable
+            size="small"
+            columns={tableColumns}
+            style={{ marginTop: '8px' }}
+            immediate={tableLoading}
+            scroll={{ x: 'max-content', y: 178 }}
+            rowKey="id"
+            totalKey="total"
+            fetchResultKey="entries"
+            isPagination={false}
+            fetchData={getCabinManageListByPage}
+            searchFilter={{ affiliateId: 243 }}
+            isSelection={false}
+            selectionParentType="checkbox"
+            onUpdatePagination={() => {}}
           />
         </ConfigProvider>
       </Card>

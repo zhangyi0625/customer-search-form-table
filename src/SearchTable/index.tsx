@@ -87,9 +87,8 @@ export const SearchTable: React.FC<SearchTableProps> = memo((props) => {
     }
     setSelectionType(selectionParentType ?? selectionType);
   }, [
-    currentPagination.pageSize,
-    currentPagination.pageSizeOptions,
-    searchFilter,
+    // currentPagination.pageSize,
+    // currentPagination.pageSizeOptions,
     immediate,
     selectionParentType,
   ]);

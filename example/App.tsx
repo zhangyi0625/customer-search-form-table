@@ -85,6 +85,7 @@ const App = () => {
   const onUpdateSearch = (info: any) => {
     setSearchDefaultForm({ ...searchDefaultForm, pageIndex: 1, pageSize: 10 });
     setSelected([1097]);
+    handleClick();
   };
 
   const column = [

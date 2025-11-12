@@ -23,8 +23,6 @@ export const SearchTable: React.FC<SearchTableProps> = memo((props) => {
     onUpdateSelection,
   } = props;
 
-  // const dispatch = useDispatch()
-
   const [tableData, setTableData] = useState([]);
   const [loading, setLoading] = useState<boolean>(false);
 
@@ -91,6 +89,7 @@ export const SearchTable: React.FC<SearchTableProps> = memo((props) => {
     // currentPagination.pageSizeOptions,
     immediate,
     selectionParentType,
+    searchFilter,
   ]);
 
   const handleTableChange = (pagination: TablePaginationConfig) => {

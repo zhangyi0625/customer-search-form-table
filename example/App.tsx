@@ -66,7 +66,7 @@ const App = () => {
   const getCabinManageListByPage = () => {
     return axios.get('/api/customer/frt/order/page', {
       headers: {
-        authorization: 'Bearer e5f9a648f4d34be48b7097b41c297f55',
+        authorization: 'Bearer 2f5be1e601bf42839bdd357713f81a18',
       },
       params: {
         ...searchDefaultForm,
@@ -193,6 +193,30 @@ const App = () => {
       },
       selectResultKey: 'data',
       span: 6,
+      hiddenItem: false,
+      customPlaceholder: '搜索用户名',
+    },
+    {
+      label: '用户名',
+      name: 'customerId',
+      formType: 'focusSelect',
+      options: [],
+      selectFileldName: {
+        label: 'name',
+        value: 'id',
+      },
+      apiByUrl: '/api/staff/customer/list',
+      apiByUrlMethod: 'get',
+      setSearchKey: 'keyword',
+      apiByUrlParams: {
+        keyword: null,
+      },
+      apiByUrlHeaders: {
+        authorization: 'Bearer ' + sessionStorage.getItem('token'),
+        'Content-Type': 'application/json',
+      },
+      span: 6,
+      selectFetch: true,
       hiddenItem: false,
     },
     {

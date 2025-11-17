@@ -59,6 +59,13 @@ const SearchFormItem: React.FC<CustomColumn> = memo((props) => {
     search = false,
     callback: (data: any) => void,
   ) => {
+    const obj: { [key: string]: any } = value.apiByUrlParams ?? {};
+    if (
+      Object.values(obj).filter((item) => item).length === 0 &&
+      (!value.value || !value.value.trim())
+    ) {
+      return;
+    }
     let params =
       setSearchKey && search
         ? {
@@ -212,6 +219,8 @@ const SearchFormItem: React.FC<CustomColumn> = memo((props) => {
               placeholder={getPlaceholderBack}
               showSearch
               defaultActiveFirstOption={false}
+              suffixIcon={null}
+              notFoundContent={null}
               filterOption={
                 setSearchKey
                   ? false

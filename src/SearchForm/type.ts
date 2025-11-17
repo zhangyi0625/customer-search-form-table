@@ -21,7 +21,7 @@ export interface CustomColumn extends FormItemType {
   /** select搜索需要通过接口,函数返回一个promise,设置该属性后，apiByUrl属性则无效 */
   api?: any;
   /** 异步请求返回结果response的key值 */
-  selectResultKey?: 'data' | string;
+  selectResultKey?: 'data' | string | null;
   /** select搜索需要通过接口地址，设置该属性后，selectFetch属性则无效（设置该属性基本用于select下拉框展开时搜索远程数据，需要将formType改为focusSelect） */
   apiByUrl?: string;
   /** 接口地址调用方法，该属性配合apiByUrl使用 */

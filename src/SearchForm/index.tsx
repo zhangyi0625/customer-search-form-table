@@ -53,15 +53,17 @@ export const SearchForm: React.FC<SearchFormPorps> = memo((props) => {
   useEffect(() => {
     const getData = async (
       api?: any,
-      selectFileldName?: any,
-      selectResultKey = 'data',
+      selectFileldName?: CustomColumn['selectFileldName'] & {
+        [key: string]: any;
+      },
+      selectResultKey?: CustomColumn['selectResultKey'],
     ) => {
       const result = await replaceObjectName(
-        (await api())[selectResultKey],
-        Object.keys(selectFileldName).map(
-          (key: string) => selectFileldName[key],
+        selectResultKey ? (await api())[selectResultKey] : await api,
+        Object.keys(selectFileldName ?? {}).map(
+          (key: string) => selectFileldName![key],
         ),
-        Object.keys(selectFileldName),
+        Object.keys(selectFileldName ?? {}),
       );
       return result;
     };
@@ -69,7 +71,7 @@ export const SearchForm: React.FC<SearchFormPorps> = memo((props) => {
       if (item.selectFetch && !item.apiByUrl)
         item.options = await getData(
           item.api,
-          item.selectFileldName,
+          item.selectFileldName ?? {},
           item.selectResultKey,
         );
       if (

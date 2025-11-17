@@ -4,6 +4,7 @@ import { SearchForm } from '../src/index';
 import { SearchTable } from '../src/index';
 import { Button, Card, ConfigProvider, Space, TableProps } from 'antd';
 import { formatTime } from '../src/utils/format';
+import type { CustomColumn } from '../src/SearchForm/type';
 
 const getLocation = () => {
   return axios.get('/api/common/carrier/brand/list', {});
@@ -88,7 +89,7 @@ const App = () => {
     handleClick();
   };
 
-  const column = [
+  const column: CustomColumn[] = [
     {
       label: 'test-input',
       name: 'test',

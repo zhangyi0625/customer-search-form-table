@@ -59,7 +59,7 @@ export const SearchForm: React.FC<SearchFormPorps> = memo((props) => {
       selectResultKey?: CustomColumn['selectResultKey'],
     ) => {
       const result = await replaceObjectName(
-        selectResultKey ? (await api())[selectResultKey] : await api,
+        selectResultKey ? (await api())[selectResultKey] : await api(),
         Object.keys(selectFileldName ?? {}).map(
           (key: string) => selectFileldName![key],
         ),

@@ -79,12 +79,10 @@ const App = () => {
       if (item.formType === 'normalSelect') item.hiddenItem = true;
     });
     setColumns([...columns]);
-    // setImmediate(false);
     setTableLoading(false);
   };
 
   const onUpdateSearch = (info: any) => {
-    console.log(info, 'info');
     setSearchDefaultForm({ ...searchDefaultForm, pageIndex: 1, pageSize: 10 });
     setSelected([1097]);
     handleClick();

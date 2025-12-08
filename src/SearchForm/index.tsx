@@ -126,12 +126,12 @@ export const SearchForm: React.FC<SearchFormPorps> = memo((props) => {
           timeParams[
             typeof item.key === 'string'
               ? `${item.key}Start`
-              : (item.key as string[])[0]
+              : ((item.key as string[]) ?? [])[0]
           ] = getRangePickerByArrayType(item.key, 0);
           timeParams[
             typeof item.key === 'string'
               ? `${item.key}End`
-              : (item.key as string[])[1]
+              : ((item.key as string[]) ?? [])[1]
           ] = getRangePickerByArrayType(item.key, 1);
         }
         params = {
@@ -152,8 +152,8 @@ export const SearchForm: React.FC<SearchFormPorps> = memo((props) => {
     return (
       formatTime(
         typeof key === 'string'
-          ? searchForm.getFieldValue(key)[index]
-          : searchForm.getFieldValue(key)[index],
+          ? (searchForm.getFieldValue(key) ?? [])[index]
+          : (searchForm.getFieldValue(key) ?? [])[index],
         'Y-M-D h:m:s',
       ) ?? ''
     );

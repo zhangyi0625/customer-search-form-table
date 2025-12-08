@@ -67,7 +67,7 @@ const App = () => {
   const getCabinManageListByPage = () => {
     return axios.get('/api/customer/frt/order/page', {
       headers: {
-        authorization: 'Bearer 2f5be1e601bf42839bdd357713f81a18',
+        authorization: 'Bearer 36ec1ee1e01c4eceac47f148e86f4aa0',
       },
       params: {
         ...searchDefaultForm,
@@ -84,6 +84,7 @@ const App = () => {
   };
 
   const onUpdateSearch = (info: any) => {
+    console.log(info, 'info');
     setSearchDefaultForm({ ...searchDefaultForm, pageIndex: 1, pageSize: 10 });
     setSelected([1097]);
     handleClick();
@@ -293,6 +294,24 @@ const App = () => {
     {
       label: 'rangePicker',
       name: 'rangePicker',
+      formType: 'range-picker',
+      customPlaceholder: ['开始日期', '结束日期'],
+      span: 6,
+      hiddenItem: false,
+      selectFetch: false,
+    },
+    {
+      label: 'valid',
+      name: ['validForm', 'validTo'],
+      formType: 'range-picker',
+      customPlaceholder: ['开始日期', '结束日期'],
+      span: 6,
+      hiddenItem: false,
+      selectFetch: false,
+    },
+    {
+      label: 'testRange',
+      name: ['testRangeForm', 'testRangeTo'],
       formType: 'range-picker',
       customPlaceholder: ['开始日期', '结束日期'],
       span: 6,

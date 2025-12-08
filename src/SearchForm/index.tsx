@@ -92,11 +92,13 @@ export const SearchForm: React.FC<SearchFormPorps> = memo((props) => {
     // 针对处理时间传值表达式：name + 'Start' || 'End'
     const filterTypeByTime: { key: string; type: CustomColumn['formType'] }[] =
       [];
-    let params = {};
+    let params: Record<string, string> = {};
     searchColumns.map((item) => {
       if (
-        (item.formType === 'range-picker' || item.formType === 'date-picker') &&
-        searchForm.getFieldValue([item.name])
+        item.formType === 'range-picker' ||
+        (item.formType === 'date-picker' &&
+          (searchForm.getFieldValue([item.name]) ||
+            searchForm.getFieldValue(item.name)))
       ) {
         filterTypeByTime.push({
           key: item.name,
@@ -110,6 +112,28 @@ export const SearchForm: React.FC<SearchFormPorps> = memo((props) => {
       };
     } else {
       filterTypeByTime.map((item) => {
+        let timeParams: Record<string, string> = {};
+        /**
+         * datePicker  默认item.key
+         * rangePicker 时间范围默认item.key + 'Start' || 'End'
+         * rangePicker 处理string[]类型时，默认name:[0]、name:[1]
+         */
+        if (item.type === 'date-picker') {
+          timeParams[item.key] =
+            formatTime(searchForm.getFieldsValue()[item.key], 'Y-M-D h:m:s') ??
+            '';
+        } else {
+          timeParams[
+            typeof item.key === 'string'
+              ? `${item.key}Start`
+              : (item.key as string[])[0]
+          ] = getRangePickerByArrayType(item.key, 0);
+          timeParams[
+            typeof item.key === 'string'
+              ? `${item.key}End`
+              : (item.key as string[])[1]
+          ] = getRangePickerByArrayType(item.key, 1);
+        }
         params = {
           ...filterKeys(
             searchForm.getFieldsValue(),
@@ -117,30 +141,22 @@ export const SearchForm: React.FC<SearchFormPorps> = memo((props) => {
             false,
           ),
           ...params,
-          [item.type === 'range-picker' ? `${item.key}Start` : `${item.key}`]:
-            item.type === 'range-picker'
-              ? formatTime(
-                  searchForm.getFieldsValue()[item.key][0],
-                  'Y-M-D h:m:s',
-                )
-              : formatTime(
-                  searchForm.getFieldsValue()[item.key],
-                  'Y-M-D h:m:s',
-                ),
-          [item.type === 'range-picker' ? `${item.key}End` : `${item.key}`]:
-            item.type === 'range-picker'
-              ? formatTime(
-                  searchForm.getFieldsValue()[item.key][1],
-                  'Y-M-D' + ' 23:59:59',
-                )
-              : formatTime(
-                  searchForm.getFieldsValue()[item.key],
-                  'Y-M-D h:m:s',
-                ),
+          ...timeParams,
         };
       });
     }
     onUpdateSearch(params);
+  };
+
+  const getRangePickerByArrayType = (key: string | string[], index: number) => {
+    return (
+      formatTime(
+        typeof key === 'string'
+          ? searchForm.getFieldValue(key)[index]
+          : searchForm.getFieldValue(key)[index],
+        'Y-M-D h:m:s',
+      ) ?? ''
+    );
   };
 
   const onReset = () => {

@@ -36,15 +36,15 @@ export interface CustomColumn extends FormItemType {
   isRules?: boolean;
   // 设置formItem初始值
   defaultValue?: string | number | null;
-  /** select、cascader中FileName */
-  selectFileldName?: SelectProps['fieldNames'] | null;
+  /** select、cascader中FieldName */
+  selectFieldName?: SelectProps['fieldNames'] | null;
   /** 是否显示formItem 用于tab切换时存在不同的查询表头 */
   hiddenItem: boolean;
   /** 自定义组件的提示语（推荐在formItem中label为null时设置） */
   customPlaceholder?: string | null | string[];
 }
 
-export type SearchFormPorps = {
+export type SearchFormProps = {
   /** Row */
   gutterWidth: number;
   /** 是否显示展开(Expend)、收起（Collapse） */

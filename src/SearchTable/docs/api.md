@@ -25,8 +25,8 @@ Note: more inheritance TableProps property, please refer to the Antd UI Table co
 
 ## Methods
 
-| Method Name        | Description                                         | Parameters         |
-| ------------------ | --------------------------------------------------- | ------------------ |
-| onUpdateSearch     | Click the callback for the search and reset buttons | formItem           |
-| onUpdatePagination | Pagination callback function                        | pagination         |
-| onUpdateSelection  | Check the callback function                         | foridAdrr, dataRow |
+| Method Name        | Description                                         | Parameters       |
+| ------------------ | --------------------------------------------------- | ---------------- |
+| onUpdateSearch     | Click the callback for the search and reset buttons | formItem         |
+| onUpdatePagination | Pagination callback function                        | pagination       |
+| onUpdateSelection  | Check the callback function                         | idArray, dataRow |

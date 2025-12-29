@@ -27,11 +27,11 @@ const cascaderOptions: CascaderType[] = [
         label: 'Hangzhou',
         children: [
           {
-            value: 'xihu',
+            value: '西湖',
             label: 'West Lake',
           },
           {
-            value: 'xiasha',
+            value: '下沙',
             label: 'Xia Sha',
             disabled: true,
           },
@@ -48,8 +48,8 @@ const cascaderOptions: CascaderType[] = [
         label: 'Nanjing',
         children: [
           {
-            value: 'zhonghuamen',
-            label: 'Zhong Hua men',
+            value: '中华门',
+            label: '中华门',
           },
         ],
       },
@@ -113,7 +113,7 @@ const App = () => {
       options: [],
       selectFetch: true,
       api: getLocation,
-      selectFileldName: {
+      selectFieldName: {
         label: 'carrierCode',
         value: 'carrierCode',
       },
@@ -143,7 +143,7 @@ const App = () => {
           id: 4,
         },
       ],
-      // selectFileldName: {
+      // selectFieldName: {
       //   value: 'id',
       //   label: 'id',
       // },
@@ -187,7 +187,7 @@ const App = () => {
         authorization: 'Bearer ' + sessionStorage.getItem('token'),
         'Content-Type': 'application/json',
       },
-      selectFileldName: {
+      selectFieldName: {
         label: 'localName',
         value: 'unlocode',
       },
@@ -201,7 +201,7 @@ const App = () => {
       name: 'customerId',
       formType: 'focusSelect',
       options: [],
-      selectFileldName: {
+      selectFieldName: {
         label: 'name',
         value: 'id',
       },
@@ -233,7 +233,7 @@ const App = () => {
           value: '222',
         },
       ],
-      selectFileldName: {
+      selectFieldName: {
         label: 'name',
         value: 'value',
       },
@@ -256,7 +256,7 @@ const App = () => {
       formType: 'normalSelect',
       options: [],
       selectFetch: false,
-      selectFileldName: {
+      selectFieldName: {
         label: 'routeName',
         value: 'id',
       },
@@ -468,7 +468,7 @@ const App = () => {
     },
     {
       label: null,
-      name: 'testselect',
+      name: 'test-select',
       formType: 'normalSelect',
       customPlaceholder: '请选择',
       options: [
@@ -489,7 +489,7 @@ const App = () => {
           id: 54 * 54,
         },
       ],
-      selectFileldName: {
+      selectFieldName: {
         label: 'name',
         value: 'id',
       },
@@ -546,7 +546,7 @@ const App = () => {
   return (
     <>
       <div className="" onClick={() => handleClick()}>
-        Rslib templte
+        Rslib-template
       </div>
       <Card style={{ margin: '20px 0' }}>
         <h2>SearchForm template</h2>

@@ -3,7 +3,7 @@ import { memo, useEffect, useState } from 'react';
 import { Button, Col, Form, Row, Space } from 'antd';
 import { DownOutlined, RedoOutlined, SearchOutlined } from '@ant-design/icons';
 import SearchFormItem from './SearchFormItem';
-import type { CustomColumn, SearchFormPorps } from './type';
+import type { CustomColumn, SearchFormProps } from './type';
 import { filterKeys, replaceObjectName } from '../utils/tool';
 import { formatTime } from '../utils/format';
 
@@ -18,7 +18,7 @@ const formItemLayout = {
   },
 };
 
-export const SearchForm: React.FC<SearchFormPorps> = memo((props) => {
+export const SearchForm: React.FC<SearchFormProps> = memo((props) => {
   const {
     gutterWidth = 24,
     defaultColsNumber,
@@ -39,7 +39,7 @@ export const SearchForm: React.FC<SearchFormPorps> = memo((props) => {
 
   const [isExpend, setIsExpend] = useState<boolean>(true);
 
-  const [searchColumns, setSerachColumns] = useState<CustomColumn[]>(columns);
+  const [searchColumns, setSearchColumns] = useState<CustomColumn[]>(columns);
 
   const [advancedFilter, setAdvancedFilter] = useState<string>(
     advancedFilterText[0],
@@ -53,17 +53,17 @@ export const SearchForm: React.FC<SearchFormPorps> = memo((props) => {
   useEffect(() => {
     const getData = async (
       api?: any,
-      selectFileldName?: CustomColumn['selectFileldName'] & {
+      selectFieldName?: CustomColumn['selectFieldName'] & {
         [key: string]: any;
       },
       selectResultKey?: CustomColumn['selectResultKey'],
     ) => {
       const result = await replaceObjectName(
         selectResultKey ? (await api())[selectResultKey] : await api(),
-        Object.keys(selectFileldName ?? {}).map(
-          (key: string) => selectFileldName![key],
+        Object.keys(selectFieldName ?? {}).map(
+          (key: string) => selectFieldName![key],
         ),
-        Object.keys(selectFileldName ?? {}),
+        Object.keys(selectFieldName ?? {}),
       );
       return result;
     };
@@ -71,7 +71,7 @@ export const SearchForm: React.FC<SearchFormPorps> = memo((props) => {
       if (item.selectFetch && !item.apiByUrl)
         item.options = await getData(
           item.api,
-          item.selectFileldName ?? {},
+          item.selectFieldName ?? {},
           item.selectResultKey,
         );
       if (
@@ -84,7 +84,7 @@ export const SearchForm: React.FC<SearchFormPorps> = memo((props) => {
       }
     });
     setTimeout(() => {
-      setSerachColumns([...searchColumns]);
+      setSearchColumns([...searchColumns]);
     }, 300);
   }, [...searchColumns]);
 

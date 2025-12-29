@@ -29,5 +29,5 @@ export interface SearchTableProps
   /** 分页回调函数 */
   onUpdatePagination: (pagination: TablePaginationConfig) => void;
   /** 勾选回调函数 */
-  onUpdateSelection?: (idAdrr: string[], dataRow?: any) => void;
+  onUpdateSelection?: (idArray: string[], dataRow?: any) => void;
 }

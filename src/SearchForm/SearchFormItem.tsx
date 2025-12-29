@@ -50,7 +50,7 @@ const SearchFormItem: React.FC<CustomColumn> = memo((props) => {
     selectResultKey,
     options,
     isRules,
-    selectFileldName,
+    selectFieldName,
     customPlaceholder,
   } = props;
 
@@ -87,7 +87,7 @@ const SearchFormItem: React.FC<CustomColumn> = memo((props) => {
 
   const portNameOptions = ['porCode', 'fndCode', 'porId', 'fndId'];
 
-  const [defalueOptions, setDefaultOptions] =
+  const [defaultOptions, setDefaultOptions] =
     useState<SelectProps['options']>(options);
 
   const [focusSelectLoading, setFocusSelectLoading] = useState<boolean>(false);
@@ -107,7 +107,7 @@ const SearchFormItem: React.FC<CustomColumn> = memo((props) => {
     300,
   );
 
-  const selectFoucs = (
+  const selectFocus = (
     name: string,
     params: Pick<
       CustomColumn,
@@ -126,7 +126,7 @@ const SearchFormItem: React.FC<CustomColumn> = memo((props) => {
   }, [label, customPlaceholder]);
 
   const selectOptions = () => {
-    return (defalueOptions || []).map((item) =>
+    return (defaultOptions || []).map((item) =>
       portNameOptions.includes(name)
         ? {
             label: (
@@ -145,8 +145,8 @@ const SearchFormItem: React.FC<CustomColumn> = memo((props) => {
                 : item.id,
           }
         : {
-            value: item[selectFileldName?.value as string],
-            label: item[selectFileldName?.label as string],
+            value: item[selectFieldName?.value as string],
+            label: item[selectFieldName?.label as string],
           },
     );
   };
@@ -160,7 +160,7 @@ const SearchFormItem: React.FC<CustomColumn> = memo((props) => {
     );
 
   const getFilterOption = (input: string, option: any) => {
-    let key = selectFileldName ? selectFileldName['label'] : 'label';
+    let key = selectFieldName ? selectFieldName['label'] : 'label';
     return String(option[key as string] ?? '')
       .toLowerCase()
       .includes(input.toLowerCase());
@@ -203,7 +203,7 @@ const SearchFormItem: React.FC<CustomColumn> = memo((props) => {
             defaultActiveFirstOption={false}
             filterOption={false}
             onSearch={(value: string) => handleSearch(value, name, api, tag)}
-            onFocus={() => selectFoucs(name, api, tag)}
+            onFocus={() => selectFocus(name, api, tag)}
             popupMatchSelectWidth={portNameOptions.includes(name) ? 240 : true}
             classNames={{
               popup: {
@@ -239,7 +239,7 @@ const SearchFormItem: React.FC<CustomColumn> = memo((props) => {
               }
               loading={focusSelectLoading}
               onFocus={() =>
-                selectFoucs(name, {
+                selectFocus(name, {
                   apiByUrl,
                   apiByUrlMethod,
                   apiByUrlParams,
@@ -266,7 +266,7 @@ const SearchFormItem: React.FC<CustomColumn> = memo((props) => {
               options={options}
               filterOption={getFilterOption}
               fieldNames={
-                selectFileldName ?? {
+                selectFieldName ?? {
                   label: 'label',
                   value: 'value',
                 }
@@ -281,7 +281,7 @@ const SearchFormItem: React.FC<CustomColumn> = memo((props) => {
               showSearch={{ filter }}
               allowClear
               fieldNames={
-                selectFileldName ?? {
+                selectFieldName ?? {
                   label: 'label',
                   value: 'value',
                   children: 'children',

@@ -21,7 +21,7 @@
 
 ## 函数
 
-| 方法名             | 说明         | 参数               |
-| ------------------ | ------------ | ------------------ |
-| onUpdatePagination | 分页回调函数 | pagination         |
-| onUpdateSelection  | 勾选回调函数 | foridAdrr, dataRow |
+| 方法名             | 说明         | 参数             |
+| ------------------ | ------------ | ---------------- |
+| onUpdatePagination | 分页回调函数 | pagination       |
+| onUpdateSelection  | 勾选回调函数 | idArray, dataRow |

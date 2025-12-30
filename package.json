@@ -25,11 +25,11 @@
   "devDependencies": {
     "@ant-design/icons": "^5.6.0",
     "@eslint/js": "^9.30.0",
-    "@rsbuild/core": "^1.6.13",
+    "@rsbuild/core": "^1.6.15",
     "@rsbuild/plugin-mdx": "^1.1.0",
     "@rsbuild/plugin-react": "^1.4.2",
     "@rsbuild/plugin-sass": "^1.4.0",
-    "@rslib/core": "^0.18.3",
+    "@rslib/core": "^0.19.0",
     "@rstest/core": "^0.2.2",
     "@semantic-release/changelog": "^6.0.3",
     "@semantic-release/git": "^10.0.1",
